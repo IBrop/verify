@@ -1,7 +1,3 @@
-// =========================
-// ELEMENTS
-// =========================
-
 const navbar =
     document.querySelector(".navbar");
 
@@ -21,9 +17,7 @@ const confirmButtons =
     document.querySelectorAll(".confirm-button");
 
 
-// =========================
 // NAVBAR SCROLL
-// =========================
 
 function updateNavbar() {
 
@@ -49,9 +43,7 @@ window.addEventListener(
 updateNavbar();
 
 
-// =========================
 // MOBILE MENU
-// =========================
 
 mobileMenuButton.addEventListener(
     "click",
@@ -62,9 +54,6 @@ mobileMenuButton.addEventListener(
     }
 );
 
-
-// CLOSE MOBILE MENU
-// AFTER CLICKING A LINK
 
 document
     .querySelectorAll(".mobile-menu a")
@@ -82,9 +71,7 @@ document
     });
 
 
-// =========================
 // ACTIVE NAV SECTION
-// =========================
 
 function updateActiveSection() {
 
@@ -97,9 +84,7 @@ function updateActiveSection() {
             section.offsetTop - 180;
 
 
-        if (
-            window.scrollY >= sectionTop
-        ) {
+        if (window.scrollY >= sectionTop) {
 
             currentSection =
                 section.id;
@@ -118,10 +103,7 @@ function updateActiveSection() {
             link.getAttribute("href");
 
 
-        if (
-            href ===
-            `#${currentSection}`
-        ) {
+        if (href === `#${currentSection}`) {
 
             link.classList.add("active");
 
@@ -141,9 +123,7 @@ window.addEventListener(
 updateActiveSection();
 
 
-// =========================
 // PASS DEMO
-// =========================
 
 confirmButtons.forEach(
     (button) => {
@@ -185,21 +165,15 @@ confirmButtons.forEach(
 );
 
 
-// =========================
 // ESC CLOSES MOBILE MENU
-// =========================
 
 document.addEventListener(
     "keydown",
     (event) => {
 
-        if (
-            event.key === "Escape"
-        ) {
+        if (event.key === "Escape") {
 
-            mobileMenu.classList.remove(
-                "open"
-            );
+            mobileMenu.classList.remove("open");
 
         }
 
@@ -207,22 +181,15 @@ document.addEventListener(
 );
 
 
-// =========================
-// CLOSE MOBILE MENU
-// WHEN WINDOW BECOMES LARGE
-// =========================
+// CLOSE MOBILE MENU ON DESKTOP
 
 window.addEventListener(
     "resize",
     () => {
 
-        if (
-            window.innerWidth > 1120
-        ) {
+        if (window.innerWidth > 1120) {
 
-            mobileMenu.classList.remove(
-                "open"
-            );
+            mobileMenu.classList.remove("open");
 
         }
 
