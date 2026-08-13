@@ -16,14 +16,12 @@
         content="Verify — система верификации и защиты Discord-серверов."
     >
 
-    <!-- FAVICON -->
     <link
         rel="icon"
         type="image/png"
         href="assets/verify.png"
     >
 
-    <!-- CSS -->
     <link
         rel="stylesheet"
         href="style.css"
@@ -34,20 +32,19 @@
 <body>
 
 
-<!-- =========================
-     NAVBAR
-========================= -->
-
 <header class="navbar">
 
-    <!-- LEFT -->
     <a class="brand" href="#home">
 
-        <img
-            class="brand-logo"
-            src="assets/verify.png"
-            alt="Verify"
-        >
+        <span class="brand-logo-box">
+
+            <img
+                class="brand-logo"
+                src="assets/verify.png"
+                alt="Verify"
+            >
+
+        </span>
 
         <span class="brand-name">
             Verify
@@ -56,48 +53,31 @@
     </a>
 
 
-    <!-- CENTER -->
     <nav class="nav-center">
 
-        <a
-            class="nav-link active"
-            href="#home"
-        >
+        <a class="nav-link active" href="#home">
             Verify
         </a>
 
-        <a
-            class="nav-link"
-            href="#users"
-        >
+        <a class="nav-link" href="#users">
             Для пользователей
         </a>
 
-        <a
-            class="nav-link"
-            href="#owners"
-        >
+        <a class="nav-link" href="#owners">
             Для владельцев
         </a>
 
-        <a
-            class="nav-link"
-            href="#pass"
-        >
+        <a class="nav-link" href="#pass">
             Verify Pass
         </a>
 
-        <a
-            class="nav-link"
-            href="#docs"
-        >
+        <a class="nav-link" href="#docs">
             Документация
         </a>
 
     </nav>
 
 
-    <!-- RIGHT -->
     <div class="nav-actions">
 
         <a
@@ -117,7 +97,6 @@
     </div>
 
 
-    <!-- MOBILE BUTTON -->
     <button
         class="mobile-menu-button"
         id="mobileMenuButton"
@@ -130,10 +109,6 @@
 
 </header>
 
-
-<!-- =========================
-     MOBILE MENU
-========================= -->
 
 <div
     class="mobile-menu"
@@ -182,16 +157,10 @@
 </div>
 
 
-<!-- =========================
-     MAIN
-========================= -->
-
 <main>
 
 
-    <!-- =========================
-         HERO
-    ========================= -->
+    <!-- HERO -->
 
     <section
         class="hero"
@@ -252,7 +221,7 @@
         </div>
 
 
-        <!-- VERIFY DEMO -->
+        <!-- DEMO -->
 
         <div class="verification-demo">
 
@@ -260,11 +229,15 @@
 
                 <div class="demo-brand">
 
-                    <img
-                        class="mini-logo-image"
-                        src="assets/verify.png"
-                        alt=""
-                    >
+                    <span class="demo-logo-box">
+
+                        <img
+                            class="demo-logo"
+                            src="assets/verify.png"
+                            alt=""
+                        >
+
+                    </span>
 
                     <span>
                         Verify Plus
@@ -346,9 +319,7 @@
     </section>
 
 
-    <!-- =========================
-         USERS
-    ========================= -->
+    <!-- USERS -->
 
     <section
         class="section"
@@ -379,20 +350,15 @@
 
         <div class="feature-grid">
 
-
-            <!-- 01 -->
-
             <article class="feature-card">
 
                 <div class="feature-number">
                     01
                 </div>
 
-
                 <h3>
                     Discord
                 </h3>
-
 
                 <p>
                     Verify получает ваш аккаунт через
@@ -403,19 +369,15 @@
             </article>
 
 
-            <!-- 02 -->
-
             <article class="feature-card">
 
                 <div class="feature-number">
                     02
                 </div>
 
-
                 <h3>
                     Проверка
                 </h3>
-
 
                 <p>
                     Сервер выбирает подходящий уровень:
@@ -426,19 +388,15 @@
             </article>
 
 
-            <!-- 03 -->
-
             <article class="feature-card">
 
                 <div class="feature-number">
                     03
                 </div>
 
-
                 <h3>
                     Готово
                 </h3>
-
 
                 <p>
                     После успешной проверки бот
@@ -448,15 +406,12 @@
 
             </article>
 
-
         </div>
 
     </section>
 
 
-    <!-- =========================
-         OWNERS / VERSIONS
-    ========================= -->
+    <!-- OWNERS -->
 
     <section
         class="section versions-section"
@@ -465,11 +420,14 @@
 
         <div class="section-heading">
 
-            <span class="eyebrow owner-brand">
+            <span class="owner-brand">
+
                 Verify
+
                 <span class="for-text">
                     for owners
                 </span>
+
             </span>
 
 
@@ -488,8 +446,6 @@
 
         <div class="versions-grid">
 
-
-            <!-- VERIFY FOR WEB -->
 
             <article class="version-card">
 
@@ -525,29 +481,12 @@
 
                 <ul class="version-features">
 
-                    <li>
-                        Discord OAuth
-                    </li>
-
-                    <li>
-                        CAPTCHA
-                    </li>
-
-                    <li>
-                        Базовый анализ риска
-                    </li>
-
-                    <li>
-                        Review и Kick
-                    </li>
-
-                    <li>
-                        Логи в Discord
-                    </li>
-
-                    <li>
-                        Управление через Verify Pass
-                    </li>
+                    <li>Discord OAuth</li>
+                    <li>CAPTCHA</li>
+                    <li>Базовый анализ риска</li>
+                    <li>Review и Kick</li>
+                    <li>Логи в Discord</li>
+                    <li>Управление через Verify Pass</li>
 
                 </ul>
 
@@ -561,8 +500,6 @@
 
             </article>
 
-
-            <!-- VERIFY PLUS -->
 
             <article class="version-card version-card-plus">
 
@@ -603,29 +540,12 @@
 
                 <ul class="version-features">
 
-                    <li>
-                        Всё из Verify for Web
-                    </li>
-
-                    <li>
-                        Verify Helper
-                    </li>
-
-                    <li>
-                        Verify Pass
-                    </li>
-
-                    <li>
-                        Расширенная проверка устройства
-                    </li>
-
-                    <li>
-                        Быстрые повторные проверки
-                    </li>
-
-                    <li>
-                        Расширенная статистика
-                    </li>
+                    <li>Всё из Verify for Web</li>
+                    <li>Verify Helper</li>
+                    <li>Verify Pass</li>
+                    <li>Расширенная проверка устройства</li>
+                    <li>Быстрые повторные проверки</li>
+                    <li>Расширенная статистика</li>
 
                 </ul>
 
@@ -644,9 +564,7 @@
     </section>
 
 
-    <!-- =========================
-         VERIFY PASS
-    ========================= -->
+    <!-- PASS -->
 
     <section
         class="section pass-section"
@@ -698,8 +616,6 @@
             </div>
 
 
-            <!-- PASS APP MOCKUP -->
-
             <div class="pass-preview">
 
                 <div class="pass-window">
@@ -716,10 +632,15 @@
 
                         <div class="pass-window-brand">
 
-                            <img
-                                src="assets/verify.png"
-                                alt=""
-                            >
+                            <span class="pass-title-logo-box">
+
+                                <img
+                                    class="pass-title-logo"
+                                    src="assets/verify.png"
+                                    alt=""
+                                >
+
+                            </span>
 
                             <strong>
                                 Verify Pass
@@ -731,7 +652,6 @@
 
 
                     <div class="pass-window-content">
-
 
                         <div class="pass-status-icon">
                             ✓
@@ -748,17 +668,19 @@
                         </p>
 
 
-                        <!-- USER SERVER -->
-
                         <div class="pass-server">
 
                             <div>
 
-                                <img
-                                    class="server-logo"
-                                    src="assets/verify.png"
-                                    alt=""
-                                >
+                                <span class="server-logo-box">
+
+                                    <img
+                                        class="server-logo"
+                                        src="assets/verify.png"
+                                        alt=""
+                                    >
+
+                                </span>
 
 
                                 <div>
@@ -786,17 +708,19 @@
                         </div>
 
 
-                        <!-- OWNER SERVER -->
-
                         <div class="pass-server owner-server">
 
                             <div>
 
-                                <img
-                                    class="server-logo"
-                                    src="assets/verify.png"
-                                    alt=""
-                                >
+                                <span class="server-logo-box">
+
+                                    <img
+                                        class="server-logo"
+                                        src="assets/verify.png"
+                                        alt=""
+                                    >
+
+                                </span>
 
 
                                 <div>
@@ -839,9 +763,7 @@
     </section>
 
 
-    <!-- =========================
-         HELPER
-    ========================= -->
+    <!-- HELPER -->
 
     <section
         class="section helper-section"
@@ -871,7 +793,6 @@
 
 
         <div class="helper-flow">
-
 
             <div class="flow-step">
 
@@ -950,9 +871,7 @@
     </section>
 
 
-    <!-- =========================
-         DOCS
-    ========================= -->
+    <!-- DOCS -->
 
     <section
         class="section docs-section"
@@ -998,20 +917,19 @@
 </main>
 
 
-<!-- =========================
-     FOOTER
-========================= -->
-
 <footer>
-
 
     <div class="footer-brand">
 
-        <img
-            class="footer-logo"
-            src="assets/verify.png"
-            alt="Verify"
-        >
+        <span class="footer-logo-box">
+
+            <img
+                class="footer-logo"
+                src="assets/verify.png"
+                alt="Verify"
+            >
+
+        </span>
 
 
         <div>
@@ -1054,11 +972,9 @@
         © 2026 Verify
     </div>
 
-
 </footer>
 
 
-<!-- JS -->
 <script src="script.js"></script>
 
 
