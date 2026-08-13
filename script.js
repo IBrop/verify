@@ -1,6 +1,24 @@
-const navbar = document.querySelector(".navbar");
-const mobileMenuButton = document.getElementById("mobileMenuButton");
-const mobileMenu = document.getElementById("mobileMenu");
+// =========================
+// ELEMENTS
+// =========================
+
+const navbar =
+    document.querySelector(".navbar");
+
+const mobileMenuButton =
+    document.getElementById("mobileMenuButton");
+
+const mobileMenu =
+    document.getElementById("mobileMenu");
+
+const sections =
+    document.querySelectorAll("main section[id]");
+
+const navLinks =
+    document.querySelectorAll(".nav-link");
+
+const confirmButtons =
+    document.querySelectorAll(".confirm-button");
 
 
 // =========================
@@ -8,14 +26,25 @@ const mobileMenu = document.getElementById("mobileMenu");
 // =========================
 
 function updateNavbar() {
+
     if (window.scrollY > 20) {
+
         navbar.classList.add("scrolled");
+
     } else {
+
         navbar.classList.remove("scrolled");
+
     }
+
 }
 
-window.addEventListener("scroll", updateNavbar);
+
+window.addEventListener(
+    "scroll",
+    updateNavbar
+);
+
 
 updateNavbar();
 
@@ -24,39 +53,57 @@ updateNavbar();
 // MOBILE MENU
 // =========================
 
-mobileMenuButton.addEventListener("click", () => {
-    mobileMenu.classList.toggle("open");
-});
+mobileMenuButton.addEventListener(
+    "click",
+    () => {
+
+        mobileMenu.classList.toggle("open");
+
+    }
+);
 
 
-document.querySelectorAll(".mobile-menu a").forEach((link) => {
+// CLOSE MOBILE MENU
+// AFTER CLICKING A LINK
 
-    link.addEventListener("click", () => {
-        mobileMenu.classList.remove("open");
+document
+    .querySelectorAll(".mobile-menu a")
+    .forEach((link) => {
+
+        link.addEventListener(
+            "click",
+            () => {
+
+                mobileMenu.classList.remove("open");
+
+            }
+        );
+
     });
-
-});
 
 
 // =========================
 // ACTIVE NAV SECTION
 // =========================
 
-const sections = document.querySelectorAll("main section[id]");
-const navLinks = document.querySelectorAll(".nav-link");
-
-
 function updateActiveSection() {
 
     let currentSection = "home";
+
 
     sections.forEach((section) => {
 
         const sectionTop =
             section.offsetTop - 180;
 
-        if (window.scrollY >= sectionTop) {
-            currentSection = section.id;
+
+        if (
+            window.scrollY >= sectionTop
+        ) {
+
+            currentSection =
+                section.id;
+
         }
 
     });
@@ -66,10 +113,18 @@ function updateActiveSection() {
 
         link.classList.remove("active");
 
-        const href = link.getAttribute("href");
 
-        if (href === `#${currentSection}`) {
+        const href =
+            link.getAttribute("href");
+
+
+        if (
+            href ===
+            `#${currentSection}`
+        ) {
+
             link.classList.add("active");
+
         }
 
     });
@@ -77,43 +132,99 @@ function updateActiveSection() {
 }
 
 
-window.addEventListener("scroll", updateActiveSection);
+window.addEventListener(
+    "scroll",
+    updateActiveSection
+);
+
 
 updateActiveSection();
 
 
 // =========================
-// DEMO CONFIRM BUTTON
+// PASS DEMO
 // =========================
 
-const confirmButtons =
-    document.querySelectorAll(".pass-server button");
+confirmButtons.forEach(
+    (button) => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                const oldText =
+                    button.textContent;
 
 
-confirmButtons.forEach((button) => {
+                button.textContent =
+                    "Verified ✓";
 
-    if (button.textContent.trim() !== "Confirm") {
-        return;
+
+                button.disabled =
+                    true;
+
+
+                setTimeout(
+                    () => {
+
+                        button.textContent =
+                            oldText;
+
+
+                        button.disabled =
+                            false;
+
+                    },
+                    2500
+                );
+
+            }
+        );
+
     }
+);
 
 
-    button.addEventListener("click", () => {
+// =========================
+// ESC CLOSES MOBILE MENU
+// =========================
 
-        const oldText = button.textContent;
+document.addEventListener(
+    "keydown",
+    (event) => {
 
-        button.textContent = "Verified ✓";
+        if (
+            event.key === "Escape"
+        ) {
 
-        button.disabled = true;
+            mobileMenu.classList.remove(
+                "open"
+            );
+
+        }
+
+    }
+);
 
 
-        setTimeout(() => {
+// =========================
+// CLOSE MOBILE MENU
+// WHEN WINDOW BECOMES LARGE
+// =========================
 
-            button.textContent = oldText;
+window.addEventListener(
+    "resize",
+    () => {
 
-            button.disabled = false;
+        if (
+            window.innerWidth > 1120
+        ) {
 
-        }, 2500);
+            mobileMenu.classList.remove(
+                "open"
+            );
 
-    });
+        }
 
-});
+    }
+);
