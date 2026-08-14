@@ -37,7 +37,7 @@ const VERIFY_API =
 оставляем пустую строку.
 */
 
-const VERIFY_API = "https://filling-star-load-sean.trycloudflare.com";
+const VERIFY_API = "https://verify-backend-4y3f.onrender.com";
 
 
 /*
