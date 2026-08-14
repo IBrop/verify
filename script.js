@@ -17,20 +17,28 @@ const confirmButtons =
     document.querySelectorAll(".confirm-button");
 
 
-// NAVBAR SCROLL
+const openScannerButton =
+    document.getElementById("openScanner");
+
+const scannerModal =
+    document.getElementById("scannerModal");
+
+const scannerCloseButtons =
+    document.querySelectorAll("[data-close-scanner]");
+
+
+/* NAVBAR SCROLL */
 
 function updateNavbar() {
 
-    if (window.scrollY > 20) {
-
-        navbar.classList.add("scrolled");
-
-    } else {
-
-        navbar.classList.remove("scrolled");
-
+    if (!navbar) {
+        return;
     }
 
+    navbar.classList.toggle(
+        "scrolled",
+        window.scrollY > 20
+    );
 }
 
 
@@ -43,39 +51,62 @@ window.addEventListener(
 updateNavbar();
 
 
-// MOBILE MENU
+/* MOBILE MENU */
 
-mobileMenuButton.addEventListener(
-    "click",
-    () => {
+if (
+    mobileMenuButton &&
+    mobileMenu
+) {
 
-        mobileMenu.classList.toggle("open");
+    mobileMenuButton.addEventListener(
+        "click",
+        () => {
 
-    }
-);
-
-
-document
-    .querySelectorAll(".mobile-menu a")
-    .forEach((link) => {
-
-        link.addEventListener(
-            "click",
-            () => {
-
-                mobileMenu.classList.remove("open");
-
-            }
-        );
-
-    });
+            const isOpen =
+                mobileMenu.classList.toggle("open");
 
 
-// ACTIVE NAV SECTION
+            mobileMenuButton.setAttribute(
+                "aria-expanded",
+                String(isOpen)
+            );
+
+        }
+    );
+
+
+    document
+        .querySelectorAll(".mobile-menu a")
+        .forEach((link) => {
+
+            link.addEventListener(
+                "click",
+                () => {
+
+                    mobileMenu.classList.remove(
+                        "open"
+                    );
+
+
+                    mobileMenuButton.setAttribute(
+                        "aria-expanded",
+                        "false"
+                    );
+
+                }
+            );
+
+        });
+
+}
+
+
+/* ACTIVE NAV SECTION */
 
 function updateActiveSection() {
 
-    let currentSection = "home";
+    let currentSection =
+        "home";
 
 
     sections.forEach((section) => {
@@ -84,7 +115,10 @@ function updateActiveSection() {
             section.offsetTop - 180;
 
 
-        if (window.scrollY >= sectionTop) {
+        if (
+            window.scrollY >=
+            sectionTop
+        ) {
 
             currentSection =
                 section.id;
@@ -96,16 +130,19 @@ function updateActiveSection() {
 
     navLinks.forEach((link) => {
 
-        link.classList.remove("active");
+        link.classList.remove(
+            "active"
+        );
 
 
-        const href =
-            link.getAttribute("href");
+        if (
+            link.getAttribute("href") ===
+            `#${currentSection}`
+        ) {
 
-
-        if (href === `#${currentSection}`) {
-
-            link.classList.add("active");
+            link.classList.add(
+                "active"
+            );
 
         }
 
@@ -123,57 +160,148 @@ window.addEventListener(
 updateActiveSection();
 
 
-// PASS DEMO
+/* PASS DEMO BUTTON */
 
-confirmButtons.forEach(
-    (button) => {
+confirmButtons.forEach((button) => {
 
-        button.addEventListener(
-            "click",
-            () => {
+    button.addEventListener(
+        "click",
+        () => {
 
-                const oldText =
-                    button.textContent;
-
-
-                button.textContent =
-                    "Verified ✓";
+            const oldText =
+                button.textContent;
 
 
-                button.disabled =
-                    true;
+            button.textContent =
+                "Готово ✓";
 
 
-                setTimeout(
-                    () => {
-
-                        button.textContent =
-                            oldText;
+            button.disabled =
+                true;
 
 
-                        button.disabled =
-                            false;
+            setTimeout(
+                () => {
 
-                    },
-                    2500
-                );
+                    button.textContent =
+                        oldText;
 
-            }
-        );
 
+                    button.disabled =
+                        false;
+
+                },
+                2500
+            );
+
+        }
+    );
+
+});
+
+
+/* QR SCANNER MODAL */
+
+function openScanner() {
+
+    if (!scannerModal) {
+        return;
     }
-);
 
 
-// ESC CLOSES MOBILE MENU
+    scannerModal.classList.add(
+        "open"
+    );
+
+
+    scannerModal.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
+
+    document.body.classList.add(
+        "modal-open"
+    );
+
+}
+
+
+function closeScanner() {
+
+    if (!scannerModal) {
+        return;
+    }
+
+
+    scannerModal.classList.remove(
+        "open"
+    );
+
+
+    scannerModal.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+
+    document.body.classList.remove(
+        "modal-open"
+    );
+
+}
+
+
+if (openScannerButton) {
+
+    openScannerButton.addEventListener(
+        "click",
+        openScanner
+    );
+
+}
+
+
+scannerCloseButtons.forEach((button) => {
+
+    button.addEventListener(
+        "click",
+        closeScanner
+    );
+
+});
+
+
+/* ESC */
 
 document.addEventListener(
     "keydown",
     (event) => {
 
-        if (event.key === "Escape") {
+        if (
+            event.key ===
+            "Escape"
+        ) {
 
-            mobileMenu.classList.remove("open");
+            closeScanner();
+
+
+            if (
+                mobileMenu &&
+                mobileMenuButton
+            ) {
+
+                mobileMenu.classList.remove(
+                    "open"
+                );
+
+
+                mobileMenuButton.setAttribute(
+                    "aria-expanded",
+                    "false"
+                );
+
+            }
 
         }
 
@@ -181,15 +309,27 @@ document.addEventListener(
 );
 
 
-// CLOSE MOBILE MENU ON DESKTOP
+/* RESIZE */
 
 window.addEventListener(
     "resize",
     () => {
 
-        if (window.innerWidth > 1120) {
+        if (
+            window.innerWidth > 1120 &&
+            mobileMenu &&
+            mobileMenuButton
+        ) {
 
-            mobileMenu.classList.remove("open");
+            mobileMenu.classList.remove(
+                "open"
+            );
+
+
+            mobileMenuButton.setAttribute(
+                "aria-expanded",
+                "false"
+            );
 
         }
 
