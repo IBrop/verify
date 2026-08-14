@@ -37,7 +37,7 @@ const VERIFY_API =
 оставляем пустую строку.
 */
 
-const VERIFY_API = "https://advancement-canvas-reviewer-seasonal.trycloudflare.com";
+const VERIFY_API = "https://filling-star-load-sean.trycloudflare.com";
 
 
 /*
