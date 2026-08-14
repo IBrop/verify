@@ -1,75 +1,186 @@
+/*
+=========================================================
+VERIFY FRONTEND
+=========================================================
+
+QR содержит только:
+
+    https://verify.ibrop.dev/v/TOKEN
+
+TOKEN ничего не кодирует.
+
+Frontend:
+    1. считывает QR;
+    2. достаёт TOKEN;
+    3. отправляет TOKEN backend;
+    4. backend отвечает Web / Plus.
+
+=========================================================
+*/
+
+
+/*
+=========================================================
+CONFIG
+=========================================================
+*/
+
+/*
+Пока backend работает на том же origin.
+
+В будущем можно поменять, например, на:
+
+const VERIFY_API =
+    "https://api.verify.ibrop.dev";
+
+Если frontend и API находятся на одном сервере,
+оставляем пустую строку.
+*/
+
+const VERIFY_API = "";
+
+
+/*
+=========================================================
+ELEMENTS
+=========================================================
+*/
+
 const navbar =
     document.querySelector(".navbar");
 
 const mobileMenuButton =
-    document.getElementById("mobileMenuButton");
+    document.getElementById(
+        "mobileMenuButton"
+    );
 
 const mobileMenu =
-    document.getElementById("mobileMenu");
+    document.getElementById(
+        "mobileMenu"
+    );
 
 const sections =
-    document.querySelectorAll("main section[id]");
+    document.querySelectorAll(
+        "main section[id]"
+    );
 
 const navLinks =
-    document.querySelectorAll(".nav-link");
+    document.querySelectorAll(
+        ".nav-link"
+    );
 
 const confirmButtons =
-    document.querySelectorAll(".confirm-button");
+    document.querySelectorAll(
+        ".confirm-button"
+    );
 
 
-/* =========================================================
-   QR SCANNER ELEMENTS
-========================================================= */
+/*
+=========================================================
+SCANNER ELEMENTS
+=========================================================
+*/
 
 const openScannerButton =
-    document.getElementById("openScanner");
+    document.getElementById(
+        "openScanner"
+    );
 
 const scannerModal =
-    document.getElementById("scannerModal");
-
-const scannerCloseButtons =
-    document.querySelectorAll("[data-close-scanner]");
+    document.getElementById(
+        "scannerModal"
+    );
 
 const scannerView =
-    document.getElementById("scannerView");
+    document.getElementById(
+        "scannerView"
+    );
+
+const scannerCloseButtons =
+    document.querySelectorAll(
+        "[data-close-scanner]"
+    );
+
+const video =
+    document.getElementById(
+        "qrVideo"
+    );
+
+const cameraStatus =
+    document.getElementById(
+        "cameraStatus"
+    );
 
 const scanResult =
-    document.getElementById("scanResult");
+    document.getElementById(
+        "scanResult"
+    );
 
 const scanResultIcon =
-    document.getElementById("scanResultIcon");
+    document.getElementById(
+        "scanResultIcon"
+    );
 
 const scanResultKicker =
-    document.getElementById("scanResultKicker");
+    document.getElementById(
+        "scanResultKicker"
+    );
 
 const scanResultTitle =
-    document.getElementById("scanResultTitle");
+    document.getElementById(
+        "scanResultTitle"
+    );
 
 const scanResultMessage =
-    document.getElementById("scanResultMessage");
-
-const scanResultDetails =
-    document.getElementById("scanResultDetails");
+    document.getElementById(
+        "scanResultMessage"
+    );
 
 const scanResultServer =
-    document.getElementById("scanResultServer");
+    document.getElementById(
+        "scanResultServer"
+    );
 
 const scanResultSession =
-    document.getElementById("scanResultSession");
+    document.getElementById(
+        "scanResultSession"
+    );
 
 const scanResultActions =
-    document.getElementById("scanResultActions");
+    document.getElementById(
+        "scanResultActions"
+    );
 
-const scanAgainButton =
-    document.getElementById("scanAgain");
+const scanAgain =
+    document.getElementById(
+        "scanAgain"
+    );
 
-const demoButtons =
-    document.querySelectorAll("[data-demo-result]");
+
+/*
+=========================================================
+SCANNER STATE
+=========================================================
+*/
+
+let cameraStream = null;
+
+let barcodeDetector = null;
+
+let scannerRunning = false;
+
+let scannerBusy = false;
+
+let scannerAnimationFrame = null;
+
+let lastDetectedValue = null;
 
 
-/* =========================================================
-   NAVBAR
-========================================================= */
+/*
+=========================================================
+NAVBAR
+=========================================================
+*/
 
 function updateNavbar() {
 
@@ -81,6 +192,7 @@ function updateNavbar() {
         "scrolled",
         window.scrollY > 20
     );
+
 }
 
 
@@ -93,9 +205,11 @@ window.addEventListener(
 updateNavbar();
 
 
-/* =========================================================
-   MOBILE MENU
-========================================================= */
+/*
+=========================================================
+MOBILE MENU
+=========================================================
+*/
 
 if (
     mobileMenuButton &&
@@ -107,8 +221,9 @@ if (
         () => {
 
             const isOpen =
-                mobileMenu.classList.toggle("open");
-
+                mobileMenu.classList.toggle(
+                    "open"
+                );
 
             mobileMenuButton.setAttribute(
                 "aria-expanded",
@@ -120,34 +235,42 @@ if (
 
 
     document
-        .querySelectorAll(".mobile-menu a")
-        .forEach((link) => {
+        .querySelectorAll(
+            ".mobile-menu a"
+        )
+        .forEach(
+            (link) => {
 
-            link.addEventListener(
-                "click",
-                () => {
+                link.addEventListener(
+                    "click",
+                    () => {
 
-                    mobileMenu.classList.remove(
-                        "open"
-                    );
+                        mobileMenu
+                            .classList
+                            .remove(
+                                "open"
+                            );
 
+                        mobileMenuButton
+                            .setAttribute(
+                                "aria-expanded",
+                                "false"
+                            );
 
-                    mobileMenuButton.setAttribute(
-                        "aria-expanded",
-                        "false"
-                    );
+                    }
+                );
 
-                }
-            );
-
-        });
+            }
+        );
 
 }
 
 
-/* =========================================================
-   ACTIVE NAVIGATION
-========================================================= */
+/*
+=========================================================
+ACTIVE SECTION
+=========================================================
+*/
 
 function updateActiveSection() {
 
@@ -155,44 +278,50 @@ function updateActiveSection() {
         "home";
 
 
-    sections.forEach((section) => {
+    sections.forEach(
+        (section) => {
 
-        const sectionTop =
-            section.offsetTop - 180;
+            const sectionTop =
+                section.offsetTop - 180;
 
 
-        if (
-            window.scrollY >=
-            sectionTop
-        ) {
+            if (
+                window.scrollY >=
+                sectionTop
+            ) {
 
-            currentSection =
-                section.id;
+                currentSection =
+                    section.id;
+
+            }
 
         }
-
-    });
-
-
-    navLinks.forEach((link) => {
-
-        link.classList.remove(
-            "active"
-        );
+    );
 
 
-        if (
-            link.getAttribute("href") ===
-            `#${currentSection}`
-        ) {
+    navLinks.forEach(
+        (link) => {
 
-            link.classList.add(
+            link.classList.remove(
                 "active"
             );
 
-        }
 
-    });
+            if (
+                link.getAttribute(
+                    "href"
+                ) ===
+                `#${currentSection}`
+            ) {
+
+                link.classList.add(
+                    "active"
+                );
+
+            }
+
+        }
+    );
 
 }
 
@@ -206,85 +335,99 @@ window.addEventListener(
 updateActiveSection();
 
 
-/* =========================================================
-   PASS PREVIEW DEMO
-========================================================= */
+/*
+=========================================================
+PASS PREVIEW
+=========================================================
+*/
 
-confirmButtons.forEach((button) => {
+confirmButtons.forEach(
+    (button) => {
 
-    button.addEventListener(
-        "click",
-        () => {
+        button.addEventListener(
+            "click",
+            () => {
 
-            const oldText =
-                button.textContent;
-
-
-            button.textContent =
-                "Готово ✓";
-
-
-            button.disabled =
-                true;
+                const oldText =
+                    button.textContent;
 
 
-            setTimeout(
-                () => {
-
-                    button.textContent =
-                        oldText;
+                button.textContent =
+                    "Готово ✓";
 
 
-                    button.disabled =
-                        false;
-
-                },
-                2500
-            );
-
-        }
-    );
-
-});
+                button.disabled =
+                    true;
 
 
-/* =========================================================
-   QR SCANNER
-========================================================= */
+                setTimeout(
+                    () => {
 
-function resetScanner() {
+                        button.textContent =
+                            oldText;
 
-    if (scannerView) {
-        scannerView.hidden = false;
-    }
+                        button.disabled =
+                            false;
 
+                    },
+                    2200
+                );
 
-    if (scanResult) {
-
-        scanResult.hidden = true;
-
-        scanResult.classList.remove(
-            "is-error"
+            }
         );
 
     }
+);
 
 
-    if (scanResultActions) {
-        scanResultActions.innerHTML = "";
+/*
+=========================================================
+CAMERA STATUS
+=========================================================
+*/
+
+function setCameraStatus(
+    message,
+    type = ""
+) {
+
+    if (!cameraStatus) {
+        return;
+    }
+
+
+    cameraStatus.textContent =
+        message;
+
+
+    cameraStatus.classList.remove(
+        "success",
+        "error"
+    );
+
+
+    if (type) {
+
+        cameraStatus.classList.add(
+            type
+        );
+
     }
 
 }
 
 
-function openScanner() {
+/*
+=========================================================
+OPEN SCANNER
+=========================================================
+*/
+
+async function openScanner() {
 
     if (!scannerModal) {
         return;
     }
-
-
-    resetScanner();
 
 
     scannerModal.classList.add(
@@ -302,10 +445,25 @@ function openScanner() {
         "modal-open"
     );
 
+
+    showScannerView();
+
+
+    await startCamera();
+
 }
 
 
+/*
+=========================================================
+CLOSE SCANNER
+=========================================================
+*/
+
 function closeScanner() {
+
+    stopCamera();
+
 
     if (!scannerModal) {
         return;
@@ -327,131 +485,748 @@ function closeScanner() {
         "modal-open"
     );
 
-
-    setTimeout(
-        resetScanner,
-        220
-    );
-
 }
 
 
-if (openScannerButton) {
+/*
+=========================================================
+SHOW SCANNER VIEW
+=========================================================
+*/
 
-    openScannerButton.addEventListener(
-        "click",
-        openScanner
-    );
+function showScannerView() {
 
-}
-
-
-scannerCloseButtons.forEach((button) => {
-
-    button.addEventListener(
-        "click",
-        closeScanner
-    );
-
-});
-
-
-if (scanAgainButton) {
-
-    scanAgainButton.addEventListener(
-        "click",
-        resetScanner
-    );
-
-}
-
-
-/* =========================================================
-   HELPERS
-========================================================= */
-
-function createActionButton(
-    text,
-    type,
-    onClick
-) {
-
-    const button =
-        document.createElement("button");
-
-
-    button.type =
-        "button";
-
-
-    button.className =
-        type === "primary"
-            ? "result-primary"
-            : "result-secondary";
-
-
-    button.textContent =
-        text;
-
-
-    button.addEventListener(
-        "click",
-        onClick
-    );
-
-
-    return button;
-
-}
-
-
-function clearResult() {
-
-    if (!scanResultActions) {
-        return;
+    if (scannerView) {
+        scannerView.hidden = false;
     }
 
 
-    scanResultActions.innerHTML =
-        "";
+    if (scanResult) {
+
+        scanResult.hidden =
+            true;
+
+        scanResult.classList.remove(
+            "is-error"
+        );
+
+    }
 
 
-    const oldGojo =
-        scanResult.querySelector(
-            ".gojo-message"
+    if (scanResultActions) {
+
+        scanResultActions.innerHTML =
+            "";
+
+    }
+
+
+    lastDetectedValue =
+        null;
+
+
+    setCameraStatus(
+        "Запрашиваем доступ к камере…"
+    );
+
+}
+
+
+/*
+=========================================================
+START CAMERA
+=========================================================
+*/
+
+async function startCamera() {
+
+    stopCamera();
+
+
+    if (
+        !navigator.mediaDevices ||
+        !navigator.mediaDevices.getUserMedia
+    ) {
+
+        showError(
+            "Браузер не поддерживает доступ к камере."
+        );
+
+        return;
+
+    }
+
+
+    if (
+        !("BarcodeDetector" in window)
+    ) {
+
+        showError(
+            "Этот браузер не поддерживает встроенное распознавание QR. Для первого теста открой Verify в актуальном Chrome или Edge."
+        );
+
+        return;
+
+    }
+
+
+    try {
+
+        const formats =
+            await BarcodeDetector
+                .getSupportedFormats();
+
+
+        if (
+            !formats.includes(
+                "qr_code"
+            )
+        ) {
+
+            showError(
+                "Браузер видит камеру, но не поддерживает распознавание QR-кодов."
+            );
+
+            return;
+
+        }
+
+
+        barcodeDetector =
+            new BarcodeDetector({
+                formats: [
+                    "qr_code"
+                ]
+            });
+
+
+        setCameraStatus(
+            "Разрешите доступ к камере"
         );
 
 
-    if (oldGojo) {
-        oldGojo.remove();
+        cameraStream =
+            await navigator
+                .mediaDevices
+                .getUserMedia({
+
+                    video: {
+
+                        facingMode: {
+                            ideal:
+                                "environment"
+                        },
+
+                        width: {
+                            ideal:
+                                1280
+                        },
+
+                        height: {
+                            ideal:
+                                720
+                        }
+
+                    },
+
+                    audio:
+                        false
+
+                });
+
+
+        if (!video) {
+
+            throw new Error(
+                "VIDEO_NOT_FOUND"
+            );
+
+        }
+
+
+        video.srcObject =
+            cameraStream;
+
+
+        await video.play();
+
+
+        scannerRunning =
+            true;
+
+
+        scannerBusy =
+            false;
+
+
+        lastDetectedValue =
+            null;
+
+
+        setCameraStatus(
+            "Наведите камеру на Verify QR"
+        );
+
+
+        scanFrame();
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Verify camera error:",
+            error
+        );
+
+
+        if (
+            error.name ===
+            "NotAllowedError"
+        ) {
+
+            showError(
+                "Доступ к камере запрещён. Разрешите Verify использовать камеру в настройках браузера."
+            );
+
+            return;
+
+        }
+
+
+        if (
+            error.name ===
+            "NotFoundError"
+        ) {
+
+            showError(
+                "Камера не найдена."
+            );
+
+            return;
+
+        }
+
+
+        if (
+            error.name ===
+            "NotReadableError"
+        ) {
+
+            showError(
+                "Камера уже используется другой программой."
+            );
+
+            return;
+
+        }
+
+
+        showError(
+            "Не удалось запустить камеру."
+        );
+
     }
 
 }
 
 
-/* =========================================================
-   SHOW QR RESULT
-========================================================= */
+/*
+=========================================================
+STOP CAMERA
+=========================================================
+*/
 
-function showScanResult(
-    type,
-    options = {}
-) {
+function stopCamera() {
+
+    scannerRunning =
+        false;
+
+
+    scannerBusy =
+        false;
+
 
     if (
-        !scannerView ||
-        !scanResult
+        scannerAnimationFrame !==
+        null
     ) {
 
+        cancelAnimationFrame(
+            scannerAnimationFrame
+        );
+
+
+        scannerAnimationFrame =
+            null;
+
+    }
+
+
+    if (cameraStream) {
+
+        cameraStream
+            .getTracks()
+            .forEach(
+                (track) => {
+
+                    track.stop();
+
+                }
+            );
+
+
+        cameraStream =
+            null;
+
+    }
+
+
+    if (video) {
+
+        video.srcObject =
+            null;
+
+    }
+
+}
+
+
+/*
+=========================================================
+SCAN LOOP
+=========================================================
+*/
+
+async function scanFrame() {
+
+    if (!scannerRunning) {
         return;
     }
 
 
-    clearResult();
+    if (
+        !video ||
+        video.readyState < 2
+    ) {
+
+        scannerAnimationFrame =
+            requestAnimationFrame(
+                scanFrame
+            );
+
+        return;
+
+    }
 
 
-    scannerView.hidden =
-        true;
+    if (
+        barcodeDetector &&
+        !scannerBusy
+    ) {
+
+        scannerBusy =
+            true;
+
+
+        try {
+
+            const codes =
+                await barcodeDetector.detect(
+                    video
+                );
+
+
+            if (
+                codes.length > 0
+            ) {
+
+                const rawValue =
+                    String(
+                        codes[0].rawValue ||
+                        ""
+                    ).trim();
+
+
+                if (
+                    rawValue &&
+                    rawValue !==
+                    lastDetectedValue
+                ) {
+
+                    lastDetectedValue =
+                        rawValue;
+
+
+                    await handleQRCode(
+                        rawValue
+                    );
+
+                }
+
+            }
+
+        }
+
+        catch (error) {
+
+            console.warn(
+                "QR detection error:",
+                error
+            );
+
+        }
+
+        finally {
+
+            scannerBusy =
+                false;
+
+        }
+
+    }
+
+
+    if (scannerRunning) {
+
+        scannerAnimationFrame =
+            requestAnimationFrame(
+                scanFrame
+            );
+
+    }
+
+}
+
+
+/*
+=========================================================
+EXTRACT TOKEN
+
+Допустимые ссылки:
+
+https://verify.ibrop.dev/v/TOKEN
+
+Для локального тестирования также:
+
+http://localhost:5000/v/TOKEN
+http://127.0.0.1:5000/v/TOKEN
+=========================================================
+*/
+
+function extractVerifyToken(
+    rawValue
+) {
+
+    let url;
+
+
+    try {
+
+        url =
+            new URL(
+                rawValue
+            );
+
+    }
+
+    catch {
+
+        return null;
+
+    }
+
+
+    const allowedHosts =
+        new Set([
+
+            "verify.ibrop.dev",
+
+            "www.verify.ibrop.dev",
+
+            "localhost",
+
+            "127.0.0.1"
+
+        ]);
+
+
+    if (
+        !allowedHosts.has(
+            url.hostname
+        )
+    ) {
+
+        return null;
+
+    }
+
+
+    const match =
+        url.pathname.match(
+            /^\/v\/([A-Za-z0-9_-]{20,200})\/?$/
+        );
+
+
+    if (!match) {
+        return null;
+    }
+
+
+    return match[1];
+
+}
+
+
+/*
+=========================================================
+QR FOUND
+=========================================================
+*/
+
+async function handleQRCode(
+    rawValue
+) {
+
+    const token =
+        extractVerifyToken(
+            rawValue
+        );
+
+
+    if (!token) {
+
+        setCameraStatus(
+            "Это не Verify QR",
+            "error"
+        );
+
+
+        setTimeout(
+            () => {
+
+                if (
+                    scannerRunning
+                ) {
+
+                    setCameraStatus(
+                        "Наведите камеру на Verify QR"
+                    );
+
+                }
+
+            },
+            1300
+        );
+
+
+        return;
+
+    }
+
+
+    setCameraStatus(
+        "Verify QR найден",
+        "success"
+    );
+
+
+    stopCamera();
+
+
+    await resolveToken(
+        token
+    );
+
+}
+
+
+/*
+=========================================================
+RESOLVE TOKEN
+
+Frontend отправляет только TOKEN.
+
+Он НЕ пытается определить:
+- Web;
+- Plus;
+- сервер;
+- Discord пользователя.
+
+Это делает backend.
+=========================================================
+*/
+
+async function resolveToken(
+    token
+) {
+
+    showLoadingResult();
+
+
+    try {
+
+        const response =
+            await fetch(
+                `${VERIFY_API}/api/verify/session/${encodeURIComponent(
+                    token
+                )}`,
+                {
+
+                    method:
+                        "GET",
+
+                    headers: {
+                        "Accept":
+                            "application/json"
+                    },
+
+                    cache:
+                        "no-store"
+
+                }
+            );
+
+
+        let data;
+
+
+        try {
+
+            data =
+                await response.json();
+
+        }
+
+        catch {
+
+            throw new Error(
+                "INVALID_SERVER_RESPONSE"
+            );
+
+        }
+
+
+        if (!response.ok) {
+
+            switch (
+                data.error
+            ) {
+
+                case "SESSION_NOT_FOUND":
+
+                    showError(
+                        "Verify-сессия не найдена или уже истекла."
+                    );
+
+                    return;
+
+
+                case "SESSION_EXPIRED":
+
+                    showError(
+                        "Время этой Verify-сессии закончилось."
+                    );
+
+                    return;
+
+
+                case "SESSION_USED":
+
+                    showError(
+                        "Этот Verify QR уже был использован."
+                    );
+
+                    return;
+
+
+                case "SESSION_CANCELLED":
+
+                    showError(
+                        "Эта Verify-сессия была отменена."
+                    );
+
+                    return;
+
+
+                default:
+
+                    showError(
+                        "Verify Server не смог открыть эту сессию."
+                    );
+
+                    return;
+
+            }
+
+        }
+
+
+        if (!data.ok) {
+
+            showError(
+                "Verify Server отклонил сессию."
+            );
+
+            return;
+
+        }
+
+
+        if (
+            data.type !== "web" &&
+            data.type !== "plus"
+        ) {
+
+            showError(
+                "Verify Server вернул неизвестный тип проверки."
+            );
+
+            return;
+
+        }
+
+
+        showSuccess(
+            token,
+            data
+        );
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Verify API error:",
+            error
+        );
+
+
+        showError(
+            "Не удалось связаться с Verify Server."
+        );
+
+    }
+
+}
+
+
+/*
+=========================================================
+LOADING RESULT
+=========================================================
+*/
+
+function showLoadingResult() {
+
+    if (scannerView) {
+        scannerView.hidden = true;
+    }
+
+
+    if (!scanResult) {
+        return;
+    }
 
 
     scanResult.hidden =
@@ -463,208 +1238,394 @@ function showScanResult(
     );
 
 
-    const serverName =
-        options.server ||
-        "Discord Server";
+    if (scanResultIcon) {
+        scanResultIcon.textContent =
+            "…";
+    }
 
 
-    const sessionTime =
-        options.session ||
-        "активна · 04:51";
+    if (scanResultKicker) {
+        scanResultKicker.textContent =
+            "VERIFY SESSION";
+    }
+
+
+    if (scanResultTitle) {
+        scanResultTitle.textContent =
+            "Проверяем…";
+    }
+
+
+    if (scanResultMessage) {
+
+        scanResultMessage.textContent =
+            "Verify Server определяет тип сессии.";
+
+    }
 
 
     if (scanResultServer) {
         scanResultServer.textContent =
-            serverName;
+            "—";
     }
 
 
     if (scanResultSession) {
         scanResultSession.textContent =
-            sessionTime;
+            "проверяем";
     }
 
 
-    /* =====================================================
-       VERIFY WEB
-    ===================================================== */
+    if (scanResultActions) {
+        scanResultActions.innerHTML =
+            "";
+    }
 
-    if (type === "web") {
-
-        scanResultIcon.textContent =
-            "✓";
+}
 
 
-        scanResultKicker.textContent =
-            "QR РАСПОЗНАН";
+/*
+=========================================================
+SUCCESS
+=========================================================
+*/
+
+function showSuccess(
+    token,
+    data
+) {
+
+    if (scannerView) {
+        scannerView.hidden = true;
+    }
 
 
-        scanResultTitle.textContent =
-            "VERIFY WEB";
-
-
-        scanResultMessage.textContent =
-            "Проверка распознана. Продолжите её в браузере.";
-
-
-        if (scanResultDetails) {
-            scanResultDetails.hidden =
-                false;
-        }
-
-
-        const openButton =
-            createActionButton(
-                "Открыть Verify Web",
-                "primary",
-                () => {
-
-                    /*
-                        ПОЗЖЕ:
-
-                        window.location.href =
-                            options.url;
-
-                        Сейчас это демонстрация.
-                    */
-
-                    openButton.textContent =
-                        "Открываем…";
-
-
-                    setTimeout(
-                        () => {
-
-                            openButton.textContent =
-                                "Verify Web открыт ✓";
-
-                        },
-                        650
-                    );
-
-                }
-            );
-
-
-        scanResultActions.appendChild(
-            openButton
-        );
-
-
+    if (!scanResult) {
         return;
     }
 
 
-    /* =====================================================
-       VERIFY PLUS
-    ===================================================== */
+    scanResult.hidden =
+        false;
 
-    if (type === "plus") {
 
+    scanResult.classList.remove(
+        "is-error"
+    );
+
+
+    const isPlus =
+        data.type === "plus";
+
+
+    if (scanResultIcon) {
         scanResultIcon.textContent =
             "✓";
+    }
 
 
+    if (scanResultKicker) {
         scanResultKicker.textContent =
             "QR РАСПОЗНАН";
+    }
 
+
+    if (scanResultTitle) {
 
         scanResultTitle.textContent =
-            "VERIFY PLUS";
+            isPlus
+                ? "VERIFY PLUS"
+                : "VERIFY WEB";
 
+    }
+
+
+    if (scanResultMessage) {
 
         scanResultMessage.textContent =
-            "Для этой проверки доступен Verify Pass или одноразовый Helper.";
+            isPlus
+                ? "Verify Plus готов. Продолжите проверку через Verify Pass или Helper."
+                : "Verify Web готов. Проверку можно продолжить в браузере.";
+
+    }
 
 
-        if (scanResultDetails) {
-            scanResultDetails.hidden =
-                false;
-        }
+    if (scanResultServer) {
+
+        scanResultServer.textContent =
+            data.server ||
+            "Discord Server";
+
+    }
 
 
-        const passButton =
-            createActionButton(
-                "Открыть в Verify Pass",
-                "primary",
-                () => {
+    if (scanResultSession) {
 
-                    tryOpenVerifyPass();
+        scanResultSession.textContent =
+            `активна · ${formatTime(
+                data.expires_in
+            )}`;
 
-                }
-            );
+    }
 
 
-        const helperButton =
-            createActionButton(
-                "Продолжить с Helper",
-                "secondary",
-                () => {
-
-                    showHelperDemo();
-
-                }
-            );
-
-
-        scanResultActions.appendChild(
-            passButton
-        );
-
-
-        scanResultActions.appendChild(
-            helperButton
-        );
-
-
+    if (!scanResultActions) {
         return;
     }
 
 
-    /* =====================================================
-       ERROR
-    ===================================================== */
+    scanResultActions.innerHTML =
+        "";
 
-    if (type === "error") {
 
-        scanResult.classList.add(
-            "is-error"
+    if (!isPlus) {
+
+        const webButton =
+            document.createElement(
+                "button"
+            );
+
+
+        webButton.type =
+            "button";
+
+
+        webButton.className =
+            "result-primary";
+
+
+        webButton.textContent =
+            "Открыть Verify Web";
+
+
+        webButton.addEventListener(
+            "click",
+            () => {
+
+                /*
+                Следующий этап проекта:
+                настоящий Web flow.
+
+                Пока оставляем переход
+                на будущий адрес.
+                */
+
+                window.location.href =
+                    `/web/${encodeURIComponent(
+                        token
+                    )}`;
+
+            }
         );
 
 
+        scanResultActions.appendChild(
+            webButton
+        );
+
+
+        return;
+
+    }
+
+
+    const passButton =
+        document.createElement(
+            "button"
+        );
+
+
+    passButton.type =
+        "button";
+
+
+    passButton.className =
+        "result-primary";
+
+
+    passButton.textContent =
+        "Открыть в Verify Pass";
+
+
+    passButton.addEventListener(
+        "click",
+        () => {
+
+            openVerifyPass(
+                token
+            );
+
+        }
+    );
+
+
+    const helperButton =
+        document.createElement(
+            "button"
+        );
+
+
+    helperButton.type =
+        "button";
+
+
+    helperButton.className =
+        "result-secondary";
+
+
+    helperButton.textContent =
+        "Продолжить через Helper";
+
+
+    helperButton.addEventListener(
+        "click",
+        () => {
+
+            window.location.href =
+                `/helper/${encodeURIComponent(
+                    token
+                )}`;
+
+        }
+    );
+
+
+    scanResultActions.append(
+        passButton,
+        helperButton
+    );
+
+}
+
+
+/*
+=========================================================
+VERIFY PASS
+
+Пока deep-link будущий.
+
+Когда сделаем Pass,
+он сможет зарегистрировать:
+
+verify-pass://verify/TOKEN
+=========================================================
+*/
+
+function openVerifyPass(
+    token
+) {
+
+    const deepLink =
+        `verify-pass://verify/${encodeURIComponent(
+            token
+        )}`;
+
+
+    window.location.href =
+        deepLink;
+
+}
+
+
+/*
+=========================================================
+ERROR
+=========================================================
+*/
+
+function showError(
+    message
+) {
+
+    stopCamera();
+
+
+    if (scannerView) {
+        scannerView.hidden = true;
+    }
+
+
+    if (!scanResult) {
+
+        alert(message);
+
+        return;
+
+    }
+
+
+    scanResult.hidden =
+        false;
+
+
+    scanResult.classList.add(
+        "is-error"
+    );
+
+
+    if (scanResultIcon) {
         scanResultIcon.textContent =
             "!";
+    }
 
 
+    if (scanResultKicker) {
         scanResultKicker.textContent =
             "VERIFY ERROR";
+    }
 
 
+    if (scanResultTitle) {
         scanResultTitle.textContent =
             "Что-то пошло не так";
+    }
 
 
+    if (scanResultMessage) {
         scanResultMessage.textContent =
-            options.message ||
-            "Не удалось прочитать Verify-сессию. Попробуйте отсканировать QR ещё раз.";
+            message;
+    }
 
 
-        if (scanResultDetails) {
-            scanResultDetails.hidden =
-                true;
-        }
+    if (scanResultServer) {
+        scanResultServer.textContent =
+            "—";
+    }
 
 
-        const retryButton =
-            createActionButton(
-                "Попробовать ещё раз",
-                "primary",
-                resetScanner
+    if (scanResultSession) {
+        scanResultSession.textContent =
+            "ошибка";
+    }
+
+
+    if (scanResultActions) {
+
+        scanResultActions.innerHTML =
+            "";
+
+
+        const retry =
+            document.createElement(
+                "button"
             );
 
 
-        scanResultActions.appendChild(
-            retryButton
+        retry.type =
+            "button";
+
+
+        retry.className =
+            "result-primary";
+
+
+        retry.textContent =
+            "Попробовать снова";
+
+
+        retry.addEventListener(
+            "click",
+            restartScanner
         );
 
 
@@ -682,21 +1643,21 @@ function showScanResult(
             getGojoMessage();
 
 
-        scanResultActions.insertAdjacentElement(
-            "afterend",
+        scanResultActions.append(
+            retry,
             gojo
         );
 
-
-        return;
     }
 
 }
 
 
-/* =========================================================
-   GOJO EASTER EGG
-========================================================= */
+/*
+=========================================================
+GOJO EASTER EGG
+=========================================================
+*/
 
 function getGojoMessage() {
 
@@ -705,12 +1666,15 @@ function getGojoMessage() {
 
 
     const currentMinutes =
-        now.getHours() * 60 +
+        (
+            now.getHours() *
+            60
+        ) +
         now.getMinutes();
 
 
     const gojoArrival =
-        20 * 60 + 31;
+        (20 * 60) + 31;
 
 
     if (
@@ -722,7 +1686,9 @@ function getGojoMessage() {
             <strong>
                 Годжо Сатору ещё не прибыл.
             </strong>
+
             <br>
+
             Ожидаем в 20:31.
         `;
 
@@ -731,461 +1697,212 @@ function getGojoMessage() {
 
     return `
         <strong>
-            20:31. Годжо Сатору уже прибыл.
+            20:31. Годжо Сатору прибыл.
         </strong>
+
         <br>
-        Даже он пока не смог это починить.
+
+        Но даже он пока не смог открыть эту сессию.
     `;
 
 }
 
 
-/* =========================================================
-   PLUS → PASS
-========================================================= */
+/*
+=========================================================
+RESTART SCANNER
+=========================================================
+*/
 
-function tryOpenVerifyPass() {
+async function restartScanner() {
 
-    /*
-        ПОКА ЭТО ДЕМО.
-
-        В будущем здесь будет:
-
-        1. Создаём одноразовый app-token.
-        2. Пытаемся открыть deep link:
-           verifypass://...
-        3. Pass подтверждает открытие через backend.
-        4. Если подтверждения нет —
-           считаем, что Pass не установлен.
-    */
+    showScannerView();
 
 
-    if (!scanResultActions) {
-        return;
-    }
+    await startCamera();
+
+}
 
 
-    scanResultActions.innerHTML =
-        "";
+/*
+=========================================================
+TIME
+=========================================================
+*/
 
+function formatTime(
+    seconds
+) {
 
-    const openingButton =
-        createActionButton(
-            "Ищем Verify Pass…",
-            "primary",
-            () => {}
+    const value =
+        Math.max(
+            0,
+            Math.floor(
+                Number(seconds) || 0
+            )
         );
 
 
-    openingButton.disabled =
-        true;
+    const minutes =
+        Math.floor(
+            value / 60
+        );
 
 
-    scanResultActions.appendChild(
-        openingButton
-    );
+    const remainingSeconds =
+        value % 60;
 
 
-    setTimeout(
-        () => {
-
-            showPassNotInstalled();
-
-        },
-        1300
+    return (
+        String(minutes)
+            .padStart(
+                2,
+                "0"
+            )
+        +
+        ":"
+        +
+        String(remainingSeconds)
+            .padStart(
+                2,
+                "0"
+            )
     );
 
 }
 
 
-/* =========================================================
-   PASS NOT INSTALLED
-========================================================= */
+/*
+=========================================================
+DIRECT VERIFY LINK
 
-function showPassNotInstalled() {
+GitHub Pages не умеет сам обслуживать
+динамический /v/TOKEN.
 
-    if (!scanResultActions) {
-        return;
-    }
+Поэтому production-маршрут позже
+сделаем через backend / Worker.
 
+Но frontend уже умеет принимать:
 
-    scanResultActions.innerHTML =
-        "";
+#verify=TOKEN
+=========================================================
+*/
 
+async function handleVerifyHash() {
 
-    scanResultMessage.textContent =
-        "Verify Pass не найден. Можно установить его или продолжить через Helper.";
-
-
-    const installButton =
-        createActionButton(
-            "Установить Verify Pass",
-            "primary",
-            () => {
-
-                showInstallCode();
-
-            }
-        );
+    const hash =
+        window.location.hash;
 
 
-    const helperButton =
-        createActionButton(
-            "Использовать Helper",
-            "secondary",
-            () => {
-
-                showHelperDemo();
-
-            }
-        );
-
-
-    scanResultActions.appendChild(
-        installButton
-    );
-
-
-    scanResultActions.appendChild(
-        helperButton
-    );
-
-}
-
-
-/* =========================================================
-   INSTALLATION CONTINUATION CODE
-========================================================= */
-
-function showInstallCode() {
-
-    if (!scanResultActions) {
-        return;
-    }
-
-
-    const continuationCode =
-        generateContinuationCode();
-
-
-    scanResultMessage.innerHTML =
-        `
-            Устанавливаете Verify Pass?
-            <br>
-            Мы сохранили эту проверку.
-        `;
-
-
-    scanResultActions.innerHTML =
-        `
-            <div
-                style="
-                    padding: 18px;
-                    border: 1px solid rgba(109,124,255,.22);
-                    border-radius: 14px;
-                    background: rgba(109,124,255,.055);
-                    text-align: center;
-                "
-            >
-
-                <span
-                    style="
-                        display: block;
-                        color: #657080;
-                        font-size: 9px;
-                        font-weight: 800;
-                        letter-spacing: 1px;
-                    "
-                >
-                    КОД ПРОДОЛЖЕНИЯ
-                </span>
-
-                <strong
-                    style="
-                        display: block;
-                        margin-top: 8px;
-                        color: #c9ceff;
-                        font-size: 27px;
-                        letter-spacing: 3px;
-                    "
-                >
-                    ${continuationCode}
-                </strong>
-
-                <span
-                    style="
-                        display: block;
-                        margin-top: 8px;
-                        color: #657080;
-                        font-size: 10px;
-                    "
-                >
-                    Действителен 15 минут
-                </span>
-
-            </div>
-        `;
-
-
-    const downloadButton =
-        createActionButton(
-            "Скачать Verify Pass",
-            "primary",
-            () => {
-
-                /*
-                    Позже здесь будет
-                    реальная страница загрузки.
-                */
-
-                alert(
-                    "Здесь откроется страница загрузки Verify Pass."
-                );
-
-            }
-        );
-
-
-    scanResultActions.appendChild(
-        downloadButton
-    );
-
-}
-
-
-/* =========================================================
-   GENERATE CODE
-========================================================= */
-
-function generateContinuationCode() {
-
-    const chars =
-        "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
-
-
-    let code =
-        "VFY-";
-
-
-    for (
-        let i = 0;
-        i < 4;
-        i++
+    if (
+        !hash.startsWith(
+            "#verify="
+        )
     ) {
 
-        code +=
-            chars[
-                Math.floor(
-                    Math.random() *
-                    chars.length
-                )
-            ];
+        return;
 
     }
 
 
-    return code;
+    const token =
+        hash.slice(
+            "#verify=".length
+        );
 
-}
+
+    if (
+        !/^[A-Za-z0-9_-]{20,200}$/.test(
+            token
+        )
+    ) {
+
+        return;
+
+    }
 
 
-/* =========================================================
-   HELPER DEMO
-========================================================= */
+    history.replaceState(
+        null,
+        "",
+        window.location.pathname
+    );
 
-function showHelperDemo() {
 
-    if (!scanResultActions) {
+    if (!scannerModal) {
         return;
     }
 
 
-    scanResultMessage.textContent =
-        "Helper выбран. В полной версии Verify здесь начнётся одноразовая Helper-сессия.";
+    scannerModal.classList.add(
+        "open"
+    );
 
 
-    scanResultActions.innerHTML =
-        "";
+    scannerModal.setAttribute(
+        "aria-hidden",
+        "false"
+    );
 
 
-    const helperButton =
-        createActionButton(
-            "Запустить Helper",
-            "primary",
-            () => {
-
-                helperButton.textContent =
-                    "Helper готов ✓";
+    document.body.classList.add(
+        "modal-open"
+    );
 
 
-                helperButton.disabled =
-                    true;
-
-            }
-        );
+    stopCamera();
 
 
-    scanResultActions.appendChild(
-        helperButton
+    await resolveToken(
+        token
     );
 
 }
 
 
-/* =========================================================
-   DEMO QR BUTTONS
-========================================================= */
+/*
+=========================================================
+EVENTS
+=========================================================
+*/
 
-demoButtons.forEach((button) => {
+if (openScannerButton) {
 
-    button.addEventListener(
+    openScannerButton.addEventListener(
         "click",
-        () => {
-
-            const resultType =
-                button.dataset.demoResult;
-
-
-            if (
-                resultType ===
-                "web"
-            ) {
-
-                showScanResult(
-                    "web",
-                    {
-                        server:
-                            "NovaTime",
-
-                        session:
-                            "активна · 04:51"
-                    }
-                );
-
-                return;
-            }
-
-
-            if (
-                resultType ===
-                "plus"
-            ) {
-
-                showScanResult(
-                    "plus",
-                    {
-                        server:
-                            "NovaTime",
-
-                        session:
-                            "активна · 04:51"
-                    }
-                );
-
-                return;
-            }
-
-
-            showScanResult(
-                "error"
-            );
-
-        }
-    );
-
-});
-
-
-/* =========================================================
-   FUTURE REAL QR API
-
-   Настоящий QR scanner потом сможет просто вызвать:
-
-   handleVerifyQr({
-       type: "web",
-       server: "NovaTime",
-       session: "04:51"
-   });
-
-   И UI уже готов.
-========================================================= */
-
-function handleVerifyQr(data) {
-
-    if (!data) {
-
-        showScanResult(
-            "error",
-            {
-                message:
-                    "QR-код не содержит Verify-сессию."
-            }
-        );
-
-        return;
-    }
-
-
-    if (
-        data.type ===
-        "web"
-    ) {
-
-        showScanResult(
-            "web",
-            {
-                server:
-                    data.server ||
-                    "Discord Server",
-
-                session:
-                    data.session
-                        ? `активна · ${data.session}`
-                        : "активна"
-            }
-        );
-
-        return;
-    }
-
-
-    if (
-        data.type ===
-        "plus"
-    ) {
-
-        showScanResult(
-            "plus",
-            {
-                server:
-                    data.server ||
-                    "Discord Server",
-
-                session:
-                    data.session
-                        ? `активна · ${data.session}`
-                        : "активна"
-            }
-        );
-
-        return;
-    }
-
-
-    showScanResult(
-        "error",
-        {
-            message:
-                "Этот QR-код не поддерживается Verify."
-        }
+        openScanner
     );
 
 }
 
 
-/* =========================================================
-   ESC
-========================================================= */
+scannerCloseButtons.forEach(
+    (button) => {
+
+        button.addEventListener(
+            "click",
+            closeScanner
+        );
+
+    }
+);
+
+
+if (scanAgain) {
+
+    scanAgain.addEventListener(
+        "click",
+        restartScanner
+    );
+
+}
+
+
+/*
+=========================================================
+ESC
+=========================================================
+*/
 
 document.addEventListener(
     "keydown",
@@ -1197,6 +1914,7 @@ document.addEventListener(
         ) {
 
             return;
+
         }
 
 
@@ -1224,9 +1942,11 @@ document.addEventListener(
 );
 
 
-/* =========================================================
-   RESIZE
-========================================================= */
+/*
+=========================================================
+RESIZE
+=========================================================
+*/
 
 window.addEventListener(
     "resize",
@@ -1254,87 +1974,13 @@ window.addEventListener(
 );
 
 
-/* =========================================================
-   DEVELOPMENT API
+/*
+=========================================================
+START
+=========================================================
+*/
 
-   Можно открыть DevTools и проверить:
-
-   VerifyDemo.web()
-   VerifyDemo.plus()
-   VerifyDemo.error()
-
-========================================================= */
-
-window.VerifyDemo = {
-
-    web() {
-
-        openScanner();
-
-
-        setTimeout(
-            () => {
-
-                showScanResult(
-                    "web",
-                    {
-                        server:
-                            "NovaTime",
-
-                        session:
-                            "активна · 04:51"
-                    }
-                );
-
-            },
-            200
-        );
-
-    },
-
-
-    plus() {
-
-        openScanner();
-
-
-        setTimeout(
-            () => {
-
-                showScanResult(
-                    "plus",
-                    {
-                        server:
-                            "NovaTime",
-
-                        session:
-                            "активна · 04:51"
-                    }
-                );
-
-            },
-            200
-        );
-
-    },
-
-
-    error() {
-
-        openScanner();
-
-
-        setTimeout(
-            () => {
-
-                showScanResult(
-                    "error"
-                );
-
-            },
-            200
-        );
-
-    }
-
-};
+window.addEventListener(
+    "DOMContentLoaded",
+    handleVerifyHash
+);
