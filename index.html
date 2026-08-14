@@ -187,7 +187,6 @@
 
             <div class="hero-actions">
 
-
                 <button
                     class="scan-button"
                     id="openScanner"
@@ -422,7 +421,6 @@
 
         <div class="steps">
 
-
             <article class="step-card">
 
                 <div class="step-top">
@@ -540,7 +538,6 @@
 
             </article>
 
-
         </div>
 
     </section>
@@ -551,7 +548,6 @@
     <section class="section routes-section">
 
         <div class="route-showcase">
-
 
             <div class="route-copy">
 
@@ -580,7 +576,6 @@
 
             <div class="route-map">
 
-
                 <div class="route-source">
 
                     <div class="route-source-icon">
@@ -608,7 +603,6 @@
 
 
                 <div class="route-destinations">
-
 
                     <div class="route-destination">
 
@@ -654,7 +648,6 @@
 
                     </div>
 
-
                 </div>
 
             </div>
@@ -672,7 +665,6 @@
     >
 
         <div class="pass-card">
-
 
             <div class="pass-content">
 
@@ -752,7 +744,6 @@
 
                 <div class="pass-window">
 
-
                     <div class="pass-window-top">
 
                         <div class="window-controls">
@@ -779,7 +770,6 @@
 
 
                     <div class="pass-window-content">
-
 
                         <div class="pass-avatar">
 
@@ -812,7 +802,6 @@
 
                         <div class="request-card">
 
-
                             <div class="request-server">
 
                                 <img
@@ -843,7 +832,6 @@
                                 Подтвердить
                             </button>
 
-
                         </div>
 
 
@@ -858,7 +846,6 @@
                             </strong>
 
                         </div>
-
 
                     </div>
 
@@ -879,7 +866,6 @@
     >
 
         <div class="help-card">
-
 
             <div>
 
@@ -912,7 +898,6 @@
                 Открыть помощь
             </a>
 
-
         </div>
 
     </section>
@@ -924,7 +909,6 @@
 <!-- FOOTER -->
 
 <footer>
-
 
     <div class="footer-brand">
 
@@ -979,7 +963,6 @@
         © 2026 Verify
     </div>
 
-
 </footer>
 
 
@@ -1004,7 +987,6 @@
         aria-labelledby="scannerTitle"
     >
 
-
         <button
             class="scanner-close"
             type="button"
@@ -1015,69 +997,202 @@
         </button>
 
 
-        <div class="scanner-dialog-brand">
+        <!-- SCANNER VIEW -->
 
-            <img
-                src="assets/verify.png"
-                alt=""
-            >
+        <div
+            class="scanner-view"
+            id="scannerView"
+        >
 
-            <span>
-                Verify Scanner
-            </span>
+            <div class="scanner-dialog-brand">
 
-        </div>
+                <img
+                    src="assets/verify.png"
+                    alt=""
+                >
 
+                <span>
+                    Verify Scanner
+                </span>
 
-        <h2 id="scannerTitle">
-            Сканировать QR
-        </h2>
-
-
-        <p>
-
-            Наведи камеру на QR-код Verify.
-
-            Сам сканер подключим
-            на этапе движка.
-
-        </p>
-
-
-        <div class="camera-placeholder">
-
-            <span class="corner c1"></span>
-            <span class="corner c2"></span>
-            <span class="corner c3"></span>
-            <span class="corner c4"></span>
-
-
-            <div class="camera-icon">
-                ▦
             </div>
 
 
-            <div class="camera-line"></div>
+            <h2 id="scannerTitle">
+                Сканировать QR
+            </h2>
+
+
+            <p>
+
+                Наведи камеру на QR-код Verify.
+
+                Verify сам определит,
+                Web это или Plus.
+
+            </p>
+
+
+            <div class="camera-placeholder">
+
+                <span class="corner c1"></span>
+                <span class="corner c2"></span>
+                <span class="corner c3"></span>
+                <span class="corner c4"></span>
+
+
+                <div class="camera-icon">
+                    ▦
+                </div>
+
+
+                <div class="camera-line"></div>
+
+            </div>
+
+
+            <div class="scanner-note">
+
+                <span>
+                    VERIFY WEB
+                </span>
+
+                <b>
+                    +
+                </b>
+
+                <span>
+                    VERIFY PLUS
+                </span>
+
+            </div>
+
+
+            <!--
+                Пока настоящий QR-движок не подключён,
+                эти кнопки позволяют проверить интерфейс.
+            -->
+
+            <div
+                class="scanner-demo-controls"
+                aria-label="Демонстрация QR"
+            >
+
+                <button
+                    type="button"
+                    data-demo-result="web"
+                >
+                    Демо Web
+                </button>
+
+                <button
+                    type="button"
+                    data-demo-result="plus"
+                >
+                    Демо Plus
+                </button>
+
+                <button
+                    type="button"
+                    data-demo-result="error"
+                >
+                    Демо ошибки
+                </button>
+
+            </div>
 
         </div>
 
 
-        <div class="scanner-note">
+        <!-- QR RESULT -->
 
-            <span>
+        <section
+            class="scan-result"
+            id="scanResult"
+            aria-live="polite"
+            hidden
+        >
+
+            <div class="scan-result-glow"></div>
+
+
+            <div
+                class="scan-result-check"
+                id="scanResultIcon"
+            >
+                ✓
+            </div>
+
+
+            <span
+                class="scan-result-kicker"
+                id="scanResultKicker"
+            >
+                QR РАСПОЗНАН
+            </span>
+
+
+            <h3 id="scanResultTitle">
                 VERIFY WEB
-            </span>
+            </h3>
 
-            <b>
-                +
-            </b>
 
-            <span>
-                VERIFY PLUS
-            </span>
+            <p
+                class="scan-result-message"
+                id="scanResultMessage"
+            >
+                Проверка готова к продолжению.
+            </p>
 
-        </div>
 
+            <div
+                class="scan-result-details"
+                id="scanResultDetails"
+            >
+
+                <div>
+
+                    <span>
+                        Сервер
+                    </span>
+
+                    <strong id="scanResultServer">
+                        Discord Server
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        Сессия
+                    </span>
+
+                    <strong id="scanResultSession">
+                        активна · 04:51
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="scan-result-actions"
+                id="scanResultActions"
+            ></div>
+
+
+            <button
+                class="scan-again"
+                id="scanAgain"
+                type="button"
+            >
+                ← Сканировать другой QR
+            </button>
+
+        </section>
 
     </div>
 
