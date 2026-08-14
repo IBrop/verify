@@ -17,6 +17,8 @@
     --accent-soft: rgba(109, 124, 255, 0.13);
 
     --green: #67e8a5;
+    --red: #ff6b7a;
+    --red-soft: rgba(255, 107, 122, 0.12);
 
     --radius: 22px;
     --max-width: 1220px;
@@ -36,7 +38,6 @@ html {
 
 
 body {
-
     min-height: 100vh;
 
     overflow-x: hidden;
@@ -83,10 +84,11 @@ a {
 }
 
 
-/* NAVBAR */
+/* =========================
+   NAVBAR
+========================= */
 
 .navbar {
-
     position: fixed;
 
     top: 0;
@@ -116,17 +118,16 @@ a {
 
 
 .navbar.scrolled {
-
     background: rgba(7, 9, 13, 0.93);
-
     border-color: var(--border);
 }
 
 
-/* BRAND */
+/* =========================
+   BRAND
+========================= */
 
 .brand {
-
     display: flex;
     align-items: center;
 
@@ -140,7 +141,6 @@ a {
 
 
 .brand-logo-box {
-
     width: 38px;
     height: 38px;
 
@@ -153,7 +153,6 @@ a {
 
 
 .brand-logo {
-
     width: 38px !important;
     height: 38px !important;
 
@@ -166,10 +165,11 @@ a {
 }
 
 
-/* CENTER NAV */
+/* =========================
+   NAVIGATION
+========================= */
 
 .nav-center {
-
     position: absolute;
 
     left: 50%;
@@ -184,7 +184,6 @@ a {
 
 
 .nav-link {
-
     padding: 9px 12px;
 
     border-radius: 10px;
@@ -204,17 +203,13 @@ a {
 
 .nav-link:hover,
 .nav-link.active {
-
     color: var(--text);
 
     background: rgba(255, 255, 255, 0.05);
 }
 
 
-/* NAV ACTIONS */
-
 .nav-actions {
-
     margin-left: auto;
 
     display: flex;
@@ -224,10 +219,11 @@ a {
 }
 
 
-/* BUTTONS */
+/* =========================
+   BUTTONS
+========================= */
 
 .button {
-
     min-height: 41px;
 
     display: inline-flex;
@@ -261,7 +257,6 @@ a {
 
 
 .button-primary {
-
     color: white;
 
     background:
@@ -277,14 +272,12 @@ a {
 
 
 .button-primary:hover {
-
     box-shadow:
         0 10px 38px rgba(80, 98, 255, 0.28);
 }
 
 
 .button-secondary {
-
     color: #e8ebf2;
 
     background: rgba(255, 255, 255, 0.045);
@@ -294,7 +287,6 @@ a {
 
 
 .button-secondary:hover {
-
     background: rgba(255, 255, 255, 0.075);
 
     border-color: var(--border-hover);
@@ -302,7 +294,6 @@ a {
 
 
 .button-large {
-
     min-height: 50px;
 
     padding: 0 23px;
@@ -313,7 +304,9 @@ a {
 }
 
 
-/* MOBILE NAV */
+/* =========================
+   MOBILE MENU
+========================= */
 
 .mobile-menu-button,
 .mobile-menu {
@@ -321,10 +314,11 @@ a {
 }
 
 
-/* HERO */
+/* =========================
+   HERO
+========================= */
 
 .hero {
-
     position: relative;
 
     min-height: 900px;
@@ -351,7 +345,6 @@ a {
 
 
 .hero-content {
-
     position: relative;
 
     z-index: 2;
@@ -359,7 +352,6 @@ a {
 
 
 .status-pill {
-
     width: fit-content;
 
     display: flex;
@@ -384,7 +376,6 @@ a {
 
 
 .status-dot {
-
     width: 7px;
     height: 7px;
 
@@ -398,7 +389,6 @@ a {
 
 
 .hero h1 {
-
     max-width: 760px;
 
     font-size: clamp(52px, 6.1vw, 78px);
@@ -417,7 +407,6 @@ a {
 
 
 .hero-description {
-
     max-width: 650px;
 
     margin-top: 28px;
@@ -435,10 +424,11 @@ a {
 }
 
 
-/* SCAN BUTTON */
+/* =========================
+   SCAN BUTTON
+========================= */
 
 .scan-button {
-
     position: relative;
 
     width: min(100%, 510px);
@@ -490,7 +480,6 @@ a {
 
 
 .scan-button::after {
-
     content: "";
 
     position: absolute;
@@ -510,7 +499,6 @@ a {
 
 
 .scan-button:hover {
-
     transform: translateY(-3px);
 
     border-color: rgba(144, 156, 255, 0.72);
@@ -522,7 +510,6 @@ a {
 
 
 .scan-icon {
-
     position: relative;
 
     width: 58px;
@@ -537,7 +524,6 @@ a {
 
 
 .scan-icon i {
-
     position: absolute;
 
     width: 15px;
@@ -550,51 +536,38 @@ a {
 
 
 .scan-icon i:nth-child(1) {
-
     left: 10px;
     top: 10px;
 
     border-width: 2px 0 0 2px;
-
-    border-radius: 4px 0 0 0;
 }
 
 
 .scan-icon i:nth-child(2) {
-
     right: 10px;
     top: 10px;
 
     border-width: 2px 2px 0 0;
-
-    border-radius: 0 4px 0 0;
 }
 
 
 .scan-icon i:nth-child(3) {
-
     left: 10px;
     bottom: 10px;
 
     border-width: 0 0 2px 2px;
-
-    border-radius: 0 0 0 4px;
 }
 
 
 .scan-icon i:nth-child(4) {
-
     right: 10px;
     bottom: 10px;
 
     border-width: 0 2px 2px 0;
-
-    border-radius: 0 0 4px 0;
 }
 
 
 .scan-icon b {
-
     position: absolute;
 
     left: 15px;
@@ -609,34 +582,26 @@ a {
     box-shadow:
         0 0 10px rgba(103, 232, 165, 0.7);
 
-    animation:
-        miniScan 2s ease-in-out infinite;
+    animation: miniScan 2s ease-in-out infinite;
 }
 
 
 @keyframes miniScan {
-
     0%,
     100% {
-
         transform: translateY(-8px);
-
         opacity: 0.45;
     }
 
     50% {
-
         transform: translateY(8px);
-
         opacity: 1;
     }
 }
 
 
 .scan-button-text {
-
     display: flex;
-
     flex-direction: column;
 
     gap: 5px;
@@ -649,17 +614,14 @@ a {
 
 
 .scan-button-text small {
-
     color: #aeb7c8;
 
     font-size: 12px;
-
     font-weight: 500;
 }
 
 
 .scan-arrow {
-
     margin-left: auto;
     margin-right: 7px;
 
@@ -667,8 +629,7 @@ a {
 
     font-size: 25px;
 
-    transition:
-        transform 0.2s ease;
+    transition: transform 0.2s ease;
 }
 
 
@@ -678,7 +639,6 @@ a {
 
 
 .hero-secondary-actions {
-
     display: flex;
     align-items: center;
 
@@ -689,13 +649,9 @@ a {
 
 
 .owner-link {
-
     color: var(--text-soft);
 
     font-size: 13px;
-
-    transition:
-        color 0.2s ease;
 }
 
 
@@ -705,7 +661,6 @@ a {
 
 
 .route-pills {
-
     display: flex;
     align-items: center;
     flex-wrap: wrap;
@@ -724,7 +679,6 @@ a {
 
 
 .route-pills span {
-
     padding: 6px 9px;
 
     border: 1px solid var(--border);
@@ -743,17 +697,17 @@ a {
 
 
 .route-pills strong {
-
     color: var(--accent-light);
 
     font-size: 10px;
 }
 
 
-/* HERO GLOW */
+/* =========================
+   HERO GLOW
+========================= */
 
 .hero-orb {
-
     position: absolute;
 
     border-radius: 50%;
@@ -765,7 +719,6 @@ a {
 
 
 .hero-orb-one {
-
     width: 390px;
     height: 390px;
 
@@ -777,7 +730,6 @@ a {
 
 
 .hero-orb-two {
-
     width: 250px;
     height: 250px;
 
@@ -788,10 +740,11 @@ a {
 }
 
 
-/* SCANNER PREVIEW */
+/* =========================
+   QR PREVIEW
+========================= */
 
 .scanner-preview {
-
     position: relative;
 
     z-index: 2;
@@ -814,13 +767,11 @@ a {
     box-shadow:
         0 45px 110px rgba(0, 0, 0, 0.38);
 
-    transform:
-        rotate(1.2deg);
+    transform: rotate(1.2deg);
 }
 
 
 .preview-top {
-
     min-height: 62px;
 
     display: flex;
@@ -834,7 +785,6 @@ a {
 
 
 .preview-brand {
-
     display: flex;
     align-items: center;
 
@@ -846,7 +796,6 @@ a {
 
 
 .preview-brand img {
-
     width: 27px;
     height: 27px;
 
@@ -855,7 +804,6 @@ a {
 
 
 .preview-secure {
-
     display: flex;
     align-items: center;
 
@@ -876,7 +824,6 @@ a {
 
 .preview-secure i,
 .pass-active i {
-
     width: 6px;
     height: 6px;
 
@@ -884,24 +831,18 @@ a {
 
     background: currentColor;
 
-    box-shadow:
-        0 0 8px currentColor;
+    box-shadow: 0 0 8px currentColor;
 }
 
 
 .preview-body {
-
-    padding:
-        34px
-        32px
-        30px;
+    padding: 34px 32px 30px;
 
     text-align: center;
 }
 
 
 .preview-label {
-
     color: var(--text-dark);
 
     font-size: 9px;
@@ -912,7 +853,6 @@ a {
 
 
 .qr-stage {
-
     display: grid;
 
     place-items: center;
@@ -922,7 +862,6 @@ a {
 
 
 .qr-frame {
-
     position: relative;
 
     width: 226px;
@@ -935,7 +874,6 @@ a {
 
 
 .corner {
-
     position: absolute;
 
     width: 31px;
@@ -950,51 +888,38 @@ a {
 
 
 .corner.c1 {
-
     left: 0;
     top: 0;
 
     border-width: 3px 0 0 3px;
-
-    border-radius: 8px 0 0 0;
 }
 
 
 .corner.c2 {
-
     right: 0;
     top: 0;
 
     border-width: 3px 3px 0 0;
-
-    border-radius: 0 8px 0 0;
 }
 
 
 .corner.c3 {
-
     left: 0;
     bottom: 0;
 
     border-width: 0 0 3px 3px;
-
-    border-radius: 0 0 0 8px;
 }
 
 
 .corner.c4 {
-
     right: 0;
     bottom: 0;
 
     border-width: 0 3px 3px 0;
-
-    border-radius: 0 0 8px 0;
 }
 
 
 .fake-qr {
-
     position: relative;
 
     width: 190px;
@@ -1006,13 +931,11 @@ a {
 
     background: #f4f6ff;
 
-    box-shadow:
-        0 12px 50px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 12px 50px rgba(0, 0, 0, 0.25);
 }
 
 
 .qr-grid {
-
     position: absolute;
 
     inset: 13px;
@@ -1020,7 +943,6 @@ a {
     opacity: 0.92;
 
     background:
-
         linear-gradient(
             90deg,
             #10141d 12%,
@@ -1033,7 +955,6 @@ a {
             transparent 76% 86%,
             #10141d 86%
         ),
-
         linear-gradient(
             #10141d 11%,
             transparent 11% 22%,
@@ -1046,17 +967,11 @@ a {
             #10141d 88%
         );
 
-    background-size:
-        37px
-        41px;
-
-    filter:
-        contrast(1.5);
+    background-size: 37px 41px;
 }
 
 
 .qr-logo {
-
     position: absolute;
 
     left: 50%;
@@ -1067,20 +982,17 @@ a {
 
     padding: 5px;
 
-    transform:
-        translate(-50%, -50%);
+    transform: translate(-50%, -50%);
 
     border-radius: 13px;
 
     background: #0c1119;
 
-    box-shadow:
-        0 0 0 6px #f4f6ff;
+    box-shadow: 0 0 0 6px #f4f6ff;
 }
 
 
 .qr-logo img {
-
     width: 100%;
     height: 100%;
 
@@ -1089,7 +1001,6 @@ a {
 
 
 .scan-line {
-
     position: absolute;
 
     z-index: 4;
@@ -1103,43 +1014,32 @@ a {
 
     background: var(--green);
 
-    box-shadow:
-        0 0 15px rgba(103, 232, 165, 0.8);
+    box-shadow: 0 0 15px rgba(103, 232, 165, 0.8);
 
-    animation:
-        scannerLine 3s ease-in-out infinite;
+    animation: scannerLine 3s ease-in-out infinite;
 }
 
 
 @keyframes scannerLine {
-
     0%,
     100% {
-
         transform: translateY(-82px);
-
         opacity: 0.35;
     }
 
     50% {
-
         transform: translateY(82px);
-
         opacity: 1;
     }
 }
 
 
 .preview-body h3 {
-
-    margin-top: 4px;
-
     font-size: 20px;
 }
 
 
 .preview-body > p {
-
     margin-top: 8px;
 
     color: var(--text-soft);
@@ -1149,7 +1049,6 @@ a {
 
 
 .preview-methods {
-
     display: grid;
 
     grid-template-columns:
@@ -1169,40 +1068,35 @@ a {
 
     font-size: 9px;
     font-weight: 750;
-
-    letter-spacing: 0.7px;
 }
 
 
 .method-line {
-
     height: 1px;
 
     background: var(--border);
 }
 
 
-.preview-methods .method-ready {
+.method-ready {
     color: var(--green);
 }
 
 
-/* GENERAL SECTIONS */
+/* =========================
+   SECTIONS
+========================= */
 
 .section {
-
     max-width: var(--max-width);
 
     margin: 0 auto;
 
-    padding:
-        110px
-        24px;
+    padding: 110px 24px;
 }
 
 
 .section-heading {
-
     max-width: 740px;
 
     margin-bottom: 55px;
@@ -1210,7 +1104,6 @@ a {
 
 
 .section-heading.centered {
-
     margin-left: auto;
     margin-right: auto;
 
@@ -1219,7 +1112,6 @@ a {
 
 
 .eyebrow {
-
     display: block;
 
     margin-bottom: 15px;
@@ -1237,9 +1129,7 @@ a {
 .route-copy h2,
 .pass-content h2,
 .help-card h2 {
-
-    font-size:
-        clamp(36px, 5vw, 52px);
+    font-size: clamp(36px, 5vw, 52px);
 
     line-height: 1.07;
 
@@ -1251,7 +1141,6 @@ a {
 .route-copy p,
 .pass-content > p,
 .help-card p {
-
     margin-top: 19px;
 
     color: var(--text-soft);
@@ -1262,10 +1151,11 @@ a {
 }
 
 
-/* STEPS */
+/* =========================
+   STEPS
+========================= */
 
 .steps {
-
     display: grid;
 
     grid-template-columns:
@@ -1282,7 +1172,6 @@ a {
 
 
 .step-card {
-
     min-height: 285px;
 
     padding: 27px;
@@ -1300,34 +1189,26 @@ a {
 
 
 .step-card:hover {
+    transform: translateY(-4px);
 
-    transform:
-        translateY(-4px);
-
-    border-color:
-        var(--border-hover);
+    border-color: var(--border-hover);
 }
 
 
 .featured-step {
-
-    border-color:
-        rgba(109, 124, 255, 0.3);
+    border-color: rgba(109, 124, 255, 0.3);
 
     background:
-
         radial-gradient(
             circle at 90% 10%,
             rgba(109, 124, 255, 0.12),
             transparent 35%
         ),
-
         var(--panel);
 }
 
 
 .step-top {
-
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -1335,7 +1216,6 @@ a {
 
 
 .step-number {
-
     color: var(--accent-light);
 
     font-size: 11px;
@@ -1344,7 +1224,6 @@ a {
 
 
 .step-icon {
-
     width: 34px;
     height: 34px;
 
@@ -1354,8 +1233,7 @@ a {
 
     border-radius: 10px;
 
-    background:
-        rgba(255, 255, 255, 0.045);
+    background: rgba(255, 255, 255, 0.045);
 
     color: var(--text-soft);
 
@@ -1365,16 +1243,13 @@ a {
 
 
 .step-icon.success {
-
     color: var(--green);
 
-    background:
-        rgba(103, 232, 165, 0.08);
+    background: rgba(103, 232, 165, 0.08);
 }
 
 
 .step-card h3 {
-
     margin-top: 70px;
 
     font-size: 20px;
@@ -1382,7 +1257,6 @@ a {
 
 
 .step-card p {
-
     margin-top: 12px;
 
     color: var(--text-soft);
@@ -1394,7 +1268,6 @@ a {
 
 
 .step-connector {
-
     color: var(--text-dark);
 
     font-size: 18px;
@@ -1402,7 +1275,6 @@ a {
 
 
 .mini-routes {
-
     display: flex;
 
     gap: 7px;
@@ -1412,7 +1284,6 @@ a {
 
 
 .mini-routes span {
-
     padding: 5px 8px;
 
     border-radius: 999px;
@@ -1426,10 +1297,11 @@ a {
 }
 
 
-/* ROUTE SHOWCASE */
+/* =========================
+   ROUTE SHOWCASE
+========================= */
 
 .route-showcase {
-
     min-height: 530px;
 
     display: grid;
@@ -1449,24 +1321,16 @@ a {
     border-radius: 30px;
 
     background:
-
         radial-gradient(
             circle at 80% 50%,
             rgba(93, 107, 255, 0.11),
             transparent 36%
         ),
-
         rgba(13, 17, 25, 0.72);
 }
 
 
-.route-copy p {
-    max-width: 500px;
-}
-
-
 .route-map {
-
     display: grid;
 
     grid-template-columns:
@@ -1479,11 +1343,9 @@ a {
 
 
 .route-source {
-
     min-height: 155px;
 
     display: flex;
-
     flex-direction: column;
 
     align-items: center;
@@ -1491,20 +1353,17 @@ a {
 
     padding: 20px;
 
-    border:
-        1px solid rgba(109, 124, 255, 0.3);
+    border: 1px solid rgba(109, 124, 255, 0.3);
 
     border-radius: 20px;
 
-    background:
-        rgba(109, 124, 255, 0.07);
+    background: rgba(109, 124, 255, 0.07);
 
     text-align: center;
 }
 
 
 .route-source-icon {
-
     width: 45px;
     height: 45px;
 
@@ -1530,7 +1389,6 @@ a {
 
 
 .route-source span {
-
     margin-top: 5px;
 
     color: var(--text-dark);
@@ -1540,7 +1398,6 @@ a {
 
 
 .route-split {
-
     position: relative;
 
     height: 150px;
@@ -1548,7 +1405,6 @@ a {
 
 
 .route-split i {
-
     position: absolute;
 
     left: 0;
@@ -1557,13 +1413,11 @@ a {
     width: 50%;
     height: 1px;
 
-    background:
-        rgba(109, 124, 255, 0.28);
+    background: rgba(109, 124, 255, 0.28);
 }
 
 
 .route-split span {
-
     position: absolute;
 
     right: 0;
@@ -1571,37 +1425,25 @@ a {
     width: 50%;
     height: 50%;
 
-    border-left:
-        1px solid rgba(109, 124, 255, 0.28);
+    border-left: 1px solid rgba(109, 124, 255, 0.28);
 }
 
 
 .route-split span:first-child {
-
     top: 0;
 
-    border-bottom:
-        1px solid rgba(109, 124, 255, 0.28);
-
-    border-radius:
-        0 0 0 10px;
+    border-bottom: 1px solid rgba(109, 124, 255, 0.28);
 }
 
 
 .route-split span:last-child {
-
     bottom: 0;
 
-    border-top:
-        1px solid rgba(109, 124, 255, 0.28);
-
-    border-radius:
-        10px 0 0 0;
+    border-top: 1px solid rgba(109, 124, 255, 0.28);
 }
 
 
 .route-destinations {
-
     display: grid;
 
     gap: 16px;
@@ -1609,7 +1451,6 @@ a {
 
 
 .route-destination {
-
     min-height: 105px;
 
     display: flex;
@@ -1624,20 +1465,16 @@ a {
 
     border-radius: 17px;
 
-    background:
-        rgba(255, 255, 255, 0.025);
+    background: rgba(255, 255, 255, 0.025);
 }
 
 
 .route-destination-plus {
-
-    border-color:
-        rgba(109, 124, 255, 0.25);
+    border-color: rgba(109, 124, 255, 0.25);
 }
 
 
 .route-destination strong {
-
     display: block;
 
     margin-top: 6px;
@@ -1647,7 +1484,6 @@ a {
 
 
 .route-tag {
-
     color: var(--text-dark);
 
     font-size: 8px;
@@ -1658,20 +1494,18 @@ a {
 
 
 .route-state {
-
     color: var(--accent-light);
 
     font-size: 10px;
     font-weight: 700;
-
-    white-space: nowrap;
 }
 
 
-/* PASS */
+/* =========================
+   PASS
+========================= */
 
 .pass-card {
-
     min-height: 620px;
 
     display: grid;
@@ -1693,24 +1527,16 @@ a {
     border-radius: 30px;
 
     background:
-
         radial-gradient(
             circle at 82% 48%,
             rgba(93, 107, 255, 0.14),
             transparent 34%
         ),
-
         rgba(13, 17, 25, 0.78);
 }
 
 
-.pass-content > p {
-    max-width: 500px;
-}
-
-
 .pass-actions {
-
     margin-top: 30px;
 
     display: flex;
@@ -1721,13 +1547,9 @@ a {
 
 
 .text-link {
-
     color: var(--text-soft);
 
     font-size: 13px;
-
-    transition:
-        color 0.2s ease;
 }
 
 
@@ -1737,9 +1559,7 @@ a {
 
 
 .pass-points {
-
     display: flex;
-
     flex-direction: column;
 
     gap: 10px;
@@ -1753,7 +1573,6 @@ a {
 
 
 .pass-points i {
-
     margin-right: 7px;
 
     color: var(--green);
@@ -1762,28 +1581,23 @@ a {
 }
 
 
-/* PASS WINDOW */
-
 .pass-preview {
     position: relative;
 }
 
 
 .phone-glow {
-
     position: absolute;
 
     inset: 15% 10%;
 
-    background:
-        rgba(91, 105, 255, 0.18);
+    background: rgba(91, 105, 255, 0.18);
 
     filter: blur(65px);
 }
 
 
 .pass-window {
-
     position: relative;
 
     overflow: hidden;
@@ -1794,16 +1608,11 @@ a {
 
     background: #0c1119;
 
-    box-shadow:
-        0 35px 85px rgba(0, 0, 0, 0.4);
-
-    transform:
-        rotate(-1deg);
+    box-shadow: 0 35px 85px rgba(0, 0, 0, 0.4);
 }
 
 
 .pass-window-top {
-
     position: relative;
 
     height: 54px;
@@ -1813,13 +1622,11 @@ a {
 
     padding: 0 17px;
 
-    border-bottom:
-        1px solid var(--border);
+    border-bottom: 1px solid var(--border);
 }
 
 
 .window-controls {
-
     display: flex;
 
     gap: 6px;
@@ -1827,39 +1634,32 @@ a {
 
 
 .window-controls span {
-
     width: 8px;
     height: 8px;
 
     border-radius: 50%;
 
-    background:
-        rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.15);
 }
 
 
 .pass-window-brand {
-
     position: absolute;
 
     left: 50%;
 
-    transform:
-        translateX(-50%);
+    transform: translateX(-50%);
 
     display: flex;
     align-items: center;
 
     gap: 7px;
 
-    white-space: nowrap;
-
     font-size: 11px;
 }
 
 
 .pass-window-brand img {
-
     width: 20px;
     height: 20px;
 
@@ -1868,38 +1668,29 @@ a {
 
 
 .pass-window-content {
-
-    padding:
-        35px
-        30px
-        30px;
+    padding: 35px 30px 30px;
 
     text-align: center;
 }
 
 
 .pass-avatar {
-
     width: 58px;
     height: 58px;
 
-    margin:
-        0 auto 13px;
+    margin: 0 auto 13px;
 
     padding: 6px;
 
-    border:
-        1px solid rgba(109, 124, 255, 0.25);
+    border: 1px solid rgba(109, 124, 255, 0.25);
 
     border-radius: 17px;
 
-    background:
-        var(--accent-soft);
+    background: var(--accent-soft);
 }
 
 
 .pass-avatar img {
-
     width: 100%;
     height: 100%;
 
@@ -1908,7 +1699,6 @@ a {
 
 
 .pass-active {
-
     display: inline-flex;
     align-items: center;
 
@@ -1924,7 +1714,6 @@ a {
 
 
 .pass-window-content h3 {
-
     margin-top: 12px;
 
     font-size: 20px;
@@ -1932,7 +1721,6 @@ a {
 
 
 .pass-window-content > p {
-
     margin-top: 7px;
 
     color: var(--text-soft);
@@ -1942,7 +1730,6 @@ a {
 
 
 .request-card {
-
     margin-top: 28px;
 
     padding: 13px;
@@ -1953,20 +1740,17 @@ a {
 
     gap: 12px;
 
-    border:
-        1px solid rgba(109, 124, 255, 0.22);
+    border: 1px solid rgba(109, 124, 255, 0.22);
 
     border-radius: 15px;
 
-    background:
-        rgba(109, 124, 255, 0.055);
+    background: rgba(109, 124, 255, 0.055);
 
     text-align: left;
 }
 
 
 .request-server {
-
     display: flex;
     align-items: center;
 
@@ -1975,7 +1759,6 @@ a {
 
 
 .request-server img {
-
     width: 39px;
     height: 39px;
 
@@ -1995,7 +1778,6 @@ a {
 
 
 .request-server span {
-
     margin-top: 3px;
 
     color: var(--text-dark);
@@ -2005,7 +1787,6 @@ a {
 
 
 .confirm-button {
-
     padding: 9px 11px;
 
     border: 0;
@@ -2025,23 +1806,12 @@ a {
 }
 
 
-.confirm-button:disabled {
-
-    opacity: 0.72;
-
-    cursor: default;
-}
-
-
 .pass-meta {
-
     display: flex;
     align-items: center;
     justify-content: space-between;
 
     margin-top: 16px;
-
-    padding: 0 3px;
 
     color: var(--text-dark);
 
@@ -2054,10 +1824,11 @@ a {
 }
 
 
-/* HELP */
+/* =========================
+   HELP
+========================= */
 
 .help-card {
-
     min-height: 270px;
 
     padding: 45px;
@@ -2086,22 +1857,18 @@ a {
 }
 
 
-/* FOOTER */
+/* =========================
+   FOOTER
+========================= */
 
 footer {
-
     max-width: var(--max-width);
 
     min-height: 150px;
 
-    margin:
-        30px
-        auto
-        0;
+    margin: 30px auto 0;
 
-    padding:
-        40px
-        24px;
+    padding: 40px 24px;
 
     display: grid;
 
@@ -2114,13 +1881,11 @@ footer {
 
     gap: 30px;
 
-    border-top:
-        1px solid var(--border);
+    border-top: 1px solid var(--border);
 }
 
 
 .footer-brand {
-
     display: flex;
     align-items: center;
 
@@ -2129,11 +1894,8 @@ footer {
 
 
 .footer-logo-box {
-
     width: 30px;
     height: 30px;
-
-    flex: 0 0 30px;
 
     overflow: hidden;
 
@@ -2142,11 +1904,8 @@ footer {
 
 
 .footer-logo {
-
     width: 30px !important;
     height: 30px !important;
-
-    object-fit: contain;
 }
 
 
@@ -2162,9 +1921,6 @@ footer {
 
 
 .footer-brand div span {
-
-    margin-top: 2px;
-
     color: var(--text-dark);
 
     font-size: 10px;
@@ -2172,7 +1928,6 @@ footer {
 
 
 .footer-links {
-
     display: flex;
 
     gap: 23px;
@@ -2180,7 +1935,6 @@ footer {
 
 
 .footer-links a {
-
     color: var(--text-soft);
 
     font-size: 12px;
@@ -2193,7 +1947,6 @@ footer {
 
 
 .footer-copy {
-
     text-align: right;
 
     color: var(--text-dark);
@@ -2202,10 +1955,11 @@ footer {
 }
 
 
-/* SCANNER MODAL */
+/* =========================================================
+   QR SCANNER MODAL
+========================================================= */
 
 .scanner-modal {
-
     position: fixed;
 
     inset: 0;
@@ -2229,44 +1983,46 @@ footer {
 
 
 .scanner-modal.open {
-
     visibility: visible;
-
     opacity: 1;
 }
 
 
 .scanner-backdrop {
-
     position: absolute;
 
     inset: 0;
 
-    background:
-        rgba(3, 5, 8, 0.78);
+    background: rgba(3, 5, 8, 0.82);
 
-    backdrop-filter: blur(13px);
-
-    -webkit-backdrop-filter: blur(13px);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
 }
 
 
 .scanner-dialog {
-
     position: relative;
 
     z-index: 1;
 
-    width: min(100%, 460px);
+    width: min(100%, 470px);
+
+    max-height: calc(100vh - 40px);
+
+    overflow-y: auto;
 
     padding: 31px;
 
-    border:
-        1px solid var(--border-hover);
+    border: 1px solid var(--border-hover);
 
-    border-radius: 26px;
+    border-radius: 28px;
 
     background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(109, 124, 255, 0.11),
+            transparent 32%
+        ),
         linear-gradient(
             145deg,
             #111722,
@@ -2274,7 +2030,7 @@ footer {
         );
 
     box-shadow:
-        0 40px 120px rgba(0, 0, 0, 0.55);
+        0 40px 120px rgba(0, 0, 0, 0.58);
 
     text-align: center;
 
@@ -2282,13 +2038,11 @@ footer {
         translateY(12px)
         scale(0.98);
 
-    transition:
-        transform 0.22s ease;
+    transition: transform 0.22s ease;
 }
 
 
 .scanner-modal.open .scanner-dialog {
-
     transform:
         translateY(0)
         scale(1);
@@ -2296,22 +2050,21 @@ footer {
 
 
 .scanner-close {
-
     position: absolute;
 
     right: 15px;
     top: 15px;
 
+    z-index: 20;
+
     width: 34px;
     height: 34px;
 
-    border:
-        1px solid var(--border);
+    border: 1px solid var(--border);
 
     border-radius: 10px;
 
-    background:
-        rgba(255, 255, 255, 0.04);
+    background: rgba(255, 255, 255, 0.04);
 
     color: var(--text-soft);
 
@@ -2321,8 +2074,14 @@ footer {
 }
 
 
-.scanner-dialog-brand {
+.scanner-close:hover {
+    color: white;
 
+    background: rgba(255, 255, 255, 0.08);
+}
+
+
+.scanner-dialog-brand {
     width: fit-content;
 
     display: flex;
@@ -2330,8 +2089,7 @@ footer {
 
     gap: 8px;
 
-    margin:
-        0 auto 24px;
+    margin: 0 auto 24px;
 
     color: var(--text-soft);
 
@@ -2341,7 +2099,6 @@ footer {
 
 
 .scanner-dialog-brand img {
-
     width: 24px;
     height: 24px;
 
@@ -2350,19 +2107,17 @@ footer {
 
 
 .scanner-dialog h2 {
-
     font-size: 30px;
 
     letter-spacing: -1px;
 }
 
 
-.scanner-dialog > p {
-
+.scanner-dialog > p,
+.scanner-view > p {
     max-width: 350px;
 
-    margin:
-        10px auto 0;
+    margin: 10px auto 0;
 
     color: var(--text-soft);
 
@@ -2373,7 +2128,6 @@ footer {
 
 
 .camera-placeholder {
-
     position: relative;
 
     height: 250px;
@@ -2386,19 +2140,16 @@ footer {
 
     overflow: hidden;
 
-    border:
-        1px solid var(--border);
+    border: 1px solid var(--border);
 
     border-radius: 19px;
 
     background:
-
         radial-gradient(
             circle at 50% 50%,
             rgba(109, 124, 255, 0.09),
             transparent 38%
         ),
-
         #070b11;
 }
 
@@ -2409,16 +2160,13 @@ footer {
 
 
 .camera-icon {
-
-    color:
-        rgba(255, 255, 255, 0.14);
+    color: rgba(255, 255, 255, 0.14);
 
     font-size: 70px;
 }
 
 
 .camera-line {
-
     position: absolute;
 
     left: 25px;
@@ -2433,34 +2181,25 @@ footer {
     box-shadow:
         0 0 14px rgba(103, 232, 165, 0.75);
 
-    animation:
-        modalScan 2.5s ease-in-out infinite;
+    animation: modalScan 2.5s ease-in-out infinite;
 }
 
 
 @keyframes modalScan {
-
     0%,
     100% {
-
-        transform:
-            translateY(-90px);
-
+        transform: translateY(-90px);
         opacity: 0.35;
     }
 
     50% {
-
-        transform:
-            translateY(90px);
-
+        transform: translateY(90px);
         opacity: 1;
     }
 }
 
 
 .scanner-note {
-
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2479,11 +2218,9 @@ footer {
 
 
 .scanner-note span {
-
     padding: 6px 9px;
 
-    border:
-        1px solid var(--border);
+    border: 1px solid var(--border);
 
     border-radius: 999px;
 
@@ -2491,24 +2228,482 @@ footer {
 }
 
 
-/* TABLET */
+/* =========================================================
+   DEMO BUTTONS
+========================================================= */
+
+.scanner-demo-controls {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 8px;
+
+    margin-top: 22px;
+
+    padding-top: 18px;
+
+    border-top: 1px solid var(--border);
+}
+
+
+.scanner-demo-controls button {
+    min-height: 38px;
+
+    padding: 0 10px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 10px;
+
+    background: rgba(255, 255, 255, 0.035);
+
+    color: var(--text-soft);
+
+    font-family: inherit;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        color 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+
+.scanner-demo-controls button:hover {
+    color: white;
+
+    background: rgba(255, 255, 255, 0.07);
+
+    border-color: var(--border-hover);
+}
+
+
+/* =========================================================
+   QR RESULT — ALFA PAY STYLE
+========================================================= */
+
+.scan-result {
+    position: relative;
+
+    min-height: 540px;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    padding: 45px 8px 15px;
+
+    animation: resultAppear 0.42s ease;
+}
+
+
+.scan-result[hidden] {
+    display: none !important;
+}
+
+
+@keyframes resultAppear {
+    from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+.scan-result-glow {
+    position: absolute;
+
+    width: 340px;
+    height: 340px;
+
+    left: 50%;
+    top: 10px;
+
+    transform: translateX(-50%);
+
+    border-radius: 50%;
+
+    background:
+        rgba(100, 116, 255, 0.18);
+
+    filter: blur(75px);
+
+    pointer-events: none;
+}
+
+
+.scan-result-check {
+    position: relative;
+
+    z-index: 2;
+
+    width: 82px;
+    height: 82px;
+
+    display: grid;
+
+    place-items: center;
+
+    margin-bottom: 24px;
+
+    border:
+        1px solid rgba(144, 156, 255, 0.38);
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(128, 143, 255, 0.25),
+            rgba(76, 91, 220, 0.13)
+        );
+
+    color: #c9ceff;
+
+    font-size: 36px;
+    font-weight: 600;
+
+    box-shadow:
+        0 0 0 9px rgba(109, 124, 255, 0.045),
+        0 20px 60px rgba(75, 90, 255, 0.2);
+
+    animation:
+        resultCheck 0.5s cubic-bezier(.2, .8, .2, 1);
+}
+
+
+@keyframes resultCheck {
+    0% {
+        opacity: 0;
+        transform: scale(0.55);
+    }
+
+    70% {
+        transform: scale(1.08);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+.scan-result-kicker {
+    position: relative;
+
+    z-index: 2;
+
+    margin-bottom: 9px;
+
+    color: var(--accent-light);
+
+    font-size: 9px;
+    font-weight: 850;
+
+    letter-spacing: 1.8px;
+}
+
+
+.scan-result h3 {
+    position: relative;
+
+    z-index: 2;
+
+    font-size: 36px;
+
+    line-height: 1;
+
+    letter-spacing: -1.7px;
+}
+
+
+.scan-result-message {
+    position: relative;
+
+    z-index: 2;
+
+    max-width: 330px;
+
+    margin-top: 13px;
+
+    color: var(--text-soft);
+
+    font-size: 13px;
+
+    line-height: 1.6;
+
+    text-align: center;
+}
+
+
+.scan-result-details {
+    position: relative;
+
+    z-index: 2;
+
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        1fr
+        1fr;
+
+    margin-top: 30px;
+
+    overflow: hidden;
+
+    border: 1px solid var(--border);
+
+    border-radius: 16px;
+
+    background: rgba(255, 255, 255, 0.025);
+}
+
+
+.scan-result-details > div {
+    padding: 16px 17px;
+
+    text-align: left;
+}
+
+
+.scan-result-details > div + div {
+    border-left: 1px solid var(--border);
+}
+
+
+.scan-result-details span,
+.scan-result-details strong {
+    display: block;
+}
+
+
+.scan-result-details span {
+    color: var(--text-dark);
+
+    font-size: 9px;
+    font-weight: 700;
+
+    letter-spacing: 0.6px;
+
+    text-transform: uppercase;
+}
+
+
+.scan-result-details strong {
+    margin-top: 5px;
+
+    color: #e9ecf4;
+
+    font-size: 12px;
+}
+
+
+.scan-result-actions {
+    position: relative;
+
+    z-index: 2;
+
+    width: 100%;
+
+    display: grid;
+
+    gap: 9px;
+
+    margin-top: 17px;
+}
+
+
+.result-primary,
+.result-secondary {
+    width: 100%;
+
+    min-height: 51px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 18px;
+
+    border-radius: 13px;
+
+    font-family: inherit;
+
+    font-size: 13px;
+    font-weight: 750;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.result-primary {
+    border: 1px solid rgba(143, 154, 255, 0.45);
+
+    background:
+        linear-gradient(
+            135deg,
+            #7886ff,
+            #596bff
+        );
+
+    color: white;
+
+    box-shadow:
+        0 12px 35px rgba(80, 98, 255, 0.18);
+}
+
+
+.result-primary:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 15px 45px rgba(80, 98, 255, 0.3);
+}
+
+
+.result-secondary {
+    border: 1px solid var(--border);
+
+    background: rgba(255, 255, 255, 0.035);
+
+    color: var(--text-soft);
+}
+
+
+.result-secondary:hover {
+    color: white;
+
+    border-color: var(--border-hover);
+
+    background: rgba(255, 255, 255, 0.065);
+}
+
+
+.scan-again {
+    position: relative;
+
+    z-index: 2;
+
+    margin-top: 19px;
+
+    border: 0;
+
+    background: transparent;
+
+    color: var(--text-dark);
+
+    font-family: inherit;
+
+    font-size: 11px;
+
+    cursor: pointer;
+}
+
+
+.scan-again:hover {
+    color: var(--text-soft);
+}
+
+
+/* =========================================================
+   ERROR RESULT / GOJO
+========================================================= */
+
+.scan-result.is-error .scan-result-glow {
+    background:
+        rgba(255, 107, 122, 0.13);
+}
+
+
+.scan-result.is-error .scan-result-check {
+    border-color:
+        rgba(255, 107, 122, 0.28);
+
+    background:
+        rgba(255, 107, 122, 0.08);
+
+    color: var(--red);
+
+    box-shadow:
+        0 0 0 9px rgba(255, 107, 122, 0.035),
+        0 20px 60px rgba(255, 80, 100, 0.08);
+}
+
+
+.scan-result.is-error .scan-result-kicker {
+    color: var(--red);
+}
+
+
+.gojo-message {
+    width: 100%;
+
+    margin-top: 14px;
+
+    padding: 13px 15px;
+
+    border:
+        1px solid rgba(109, 124, 255, 0.16);
+
+    border-radius: 12px;
+
+    background:
+        rgba(109, 124, 255, 0.045);
+
+    color: #aeb6d6;
+
+    font-size: 10px;
+
+    line-height: 1.55;
+
+    text-align: center;
+}
+
+
+.gojo-message strong {
+    color: var(--accent-light);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
 
 @media (max-width: 1120px) {
-
     .nav-center {
         display: none;
     }
 
-
     .nav-actions {
-
         margin-left: auto;
         margin-right: 15px;
     }
 
-
     .mobile-menu-button {
-
         width: 40px;
         height: 40px;
 
@@ -2521,29 +2716,23 @@ footer {
 
         gap: 5px;
 
-        border:
-            1px solid var(--border);
+        border: 1px solid var(--border);
 
         border-radius: 10px;
 
-        background:
-            rgba(255, 255, 255, 0.04);
+        background: rgba(255, 255, 255, 0.04);
 
         cursor: pointer;
     }
 
-
     .mobile-menu-button span {
-
         width: 16px;
         height: 1px;
 
         background: white;
     }
 
-
     .mobile-menu {
-
         position: fixed;
 
         top: 78px;
@@ -2553,32 +2742,22 @@ footer {
 
         width: 100%;
 
-        padding:
-            20px
-            25px
-            28px;
-
-        display: none;
+        padding: 20px 25px 28px;
 
         flex-direction: column;
 
         gap: 5px;
 
-        background:
-            rgba(7, 9, 13, 0.98);
+        background: rgba(7, 9, 13, 0.98);
 
-        border-bottom:
-            1px solid var(--border);
+        border-bottom: 1px solid var(--border);
     }
-
 
     .mobile-menu.open {
         display: flex;
     }
 
-
     .mobile-menu > a {
-
         padding: 12px;
 
         border-radius: 9px;
@@ -2586,25 +2765,18 @@ footer {
         color: var(--text-soft);
     }
 
-
     .mobile-actions {
-
         display: flex;
 
         gap: 8px;
 
         margin-top: 13px;
     }
-
 }
 
 
-/* SMALL TABLET */
-
 @media (max-width: 920px) {
-
     .hero {
-
         min-height: auto;
 
         grid-template-columns: 1fr;
@@ -2614,154 +2786,90 @@ footer {
         padding-top: 145px;
     }
 
-
     .scanner-preview {
-
         max-width: 600px;
 
         margin: 0 auto;
     }
 
-
     .steps {
         grid-template-columns: 1fr;
     }
 
-
     .step-connector {
-
-        transform:
-            rotate(90deg);
+        transform: rotate(90deg);
 
         text-align: center;
     }
 
-
-    .step-card {
-        min-height: 230px;
-    }
-
-
-    .step-card h3 {
-        margin-top: 45px;
-    }
-
-
     .route-showcase,
     .pass-card {
-
         grid-template-columns: 1fr;
 
         padding: 45px;
     }
 
-
-    .route-map {
-        max-width: 650px;
-    }
-
-
     .help-card {
-
         align-items: flex-start;
 
         flex-direction: column;
     }
 
-
     footer {
-
         grid-template-columns: 1fr;
 
         text-align: left;
     }
 
-
     .footer-copy {
         text-align: left;
     }
-
 }
 
 
-/* MOBILE */
-
 @media (max-width: 650px) {
-
     .navbar {
-
         height: 70px;
 
         padding: 0 17px;
     }
 
-
     .brand-logo-box,
     .brand-logo {
-
         width: 32px !important;
         height: 32px !important;
     }
-
 
     .nav-actions {
         display: none;
     }
 
-
     .mobile-menu {
         top: 70px;
     }
 
-
     .hero {
-
         padding:
             125px
             18px
             70px;
     }
 
-
     .hero h1 {
-
         font-size: 48px;
 
         letter-spacing: -2.5px;
     }
 
-
     .hero-description {
         font-size: 16px;
     }
-
 
     .scan-button {
         min-height: 84px;
     }
 
-
-    .scan-icon {
-
-        width: 52px;
-        height: 52px;
-
-        flex-basis: 52px;
-    }
-
-
-    .scan-button-text strong {
-        font-size: 16px;
-    }
-
-
-    .scan-arrow {
-        font-size: 20px;
-    }
-
-
     .hero-secondary-actions {
-
         align-items: stretch;
 
         flex-direction: column;
@@ -2769,149 +2877,86 @@ footer {
         gap: 13px;
     }
 
-
     .hero-secondary-actions .button {
         width: 100%;
     }
-
 
     .owner-link {
         text-align: center;
     }
 
-
-    .preview-body {
-
-        padding:
-            30px
-            16px
-            25px;
-    }
-
-
-    .qr-frame {
-
-        width: 205px;
-        height: 205px;
-    }
-
-
-    .fake-qr {
-
-        width: 172px;
-        height: 172px;
-    }
-
-
     .section {
-
-        padding:
-            78px
-            18px;
+        padding: 78px 18px;
     }
-
 
     .route-showcase,
     .pass-card {
-
-        padding:
-            28px
-            18px;
+        padding: 28px 18px;
 
         border-radius: 22px;
     }
 
-
     .route-map {
-
         grid-template-columns: 1fr;
 
         gap: 16px;
     }
 
-
-    .route-source {
-        min-height: 125px;
-    }
-
-
     .route-split {
-
         width: 1px;
         height: 45px;
 
         margin: 0 auto;
 
-        background:
-            rgba(109, 124, 255, 0.28);
+        background: rgba(109, 124, 255, 0.28);
     }
-
 
     .route-split span,
     .route-split i {
         display: none;
     }
 
-
     .pass-actions {
-
         align-items: stretch;
 
         flex-direction: column;
     }
-
-
-    .pass-window-content {
-
-        padding:
-            28px
-            14px
-            20px;
-    }
-
-
-    .request-card {
-
-        align-items: stretch;
-
-        flex-direction: column;
-    }
-
-
-    .confirm-button {
-        min-height: 38px;
-    }
-
 
     .help-card {
-
-        padding:
-            28px
-            23px;
+        padding: 28px 23px;
     }
-
-
-    .help-card h2 {
-        font-size: 30px;
-    }
-
 
     .footer-links {
         flex-wrap: wrap;
     }
 
-
     .scanner-dialog {
-
-        padding:
-            28px
-            18px
-            22px;
+        padding: 28px 18px 22px;
     }
-
 
     .camera-placeholder {
         height: 220px;
     }
 
+    .scanner-demo-controls {
+        grid-template-columns: 1fr;
+    }
+
+    .scan-result {
+        min-height: 500px;
+    }
+
+    .scan-result h3 {
+        font-size: 32px;
+    }
+
+    .scan-result-details {
+        grid-template-columns: 1fr;
+    }
+
+    .scan-result-details > div + div {
+        border-left: 0;
+
+        border-top: 1px solid var(--border);
+    }
 }
