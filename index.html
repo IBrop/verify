@@ -1,19 +1,14 @@
 <!DOCTYPE html>
 <html lang="ru">
-
 <head>
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Verify — Discord Verification</title>
 
     <meta
         name="description"
-        content="Verify — система верификации и защиты Discord-серверов."
+        content="Verify — быстрая и понятная верификация для Discord-серверов."
     >
 
     <link
@@ -28,22 +23,18 @@
     >
 </head>
 
-
 <body>
-
 
 <header class="navbar">
 
     <a class="brand" href="#home">
 
         <span class="brand-logo-box">
-
             <img
                 class="brand-logo"
                 src="assets/verify.png"
                 alt="Verify"
             >
-
         </span>
 
         <span class="brand-name">
@@ -56,23 +47,19 @@
     <nav class="nav-center">
 
         <a class="nav-link active" href="#home">
-            Verify
+            Главная
         </a>
 
-        <a class="nav-link" href="#users">
-            Для пользователей
-        </a>
-
-        <a class="nav-link" href="#owners">
-            Для владельцев
+        <a class="nav-link" href="#how">
+            Как это работает
         </a>
 
         <a class="nav-link" href="#pass">
             Verify Pass
         </a>
 
-        <a class="nav-link" href="#docs">
-            Документация
+        <a class="nav-link" href="#help">
+            Помощь
         </a>
 
     </nav>
@@ -82,16 +69,16 @@
 
         <a
             class="button button-secondary"
-            href="#owners"
+            href="/owners/"
         >
-            Добавить на сервер
+            Я владелец
         </a>
 
         <a
             class="button button-primary"
-            href="#login"
+            href="#pass"
         >
-            Войти
+            Войти с Pass
         </a>
 
     </div>
@@ -100,7 +87,9 @@
     <button
         class="mobile-menu-button"
         id="mobileMenuButton"
+        type="button"
         aria-label="Открыть меню"
+        aria-expanded="false"
     >
         <span></span>
         <span></span>
@@ -116,23 +105,19 @@
 >
 
     <a href="#home">
-        Verify
+        Главная
     </a>
 
-    <a href="#users">
-        Для пользователей
-    </a>
-
-    <a href="#owners">
-        Для владельцев
+    <a href="#how">
+        Как это работает
     </a>
 
     <a href="#pass">
         Verify Pass
     </a>
 
-    <a href="#docs">
-        Документация
+    <a href="#help">
+        Помощь
     </a>
 
 
@@ -140,16 +125,16 @@
 
         <a
             class="button button-secondary"
-            href="#owners"
+            href="/owners/"
         >
-            Добавить на сервер
+            Я владелец
         </a>
 
         <a
             class="button button-primary"
-            href="#login"
+            href="#pass"
         >
-            Войти
+            Войти с Pass
         </a>
 
     </div>
@@ -167,8 +152,8 @@
         id="home"
     >
 
-        <div class="hero-glow hero-glow-one"></div>
-        <div class="hero-glow hero-glow-two"></div>
+        <div class="hero-orb hero-orb-one"></div>
+        <div class="hero-orb hero-orb-two"></div>
 
 
         <div class="hero-content">
@@ -177,138 +162,222 @@
 
                 <span class="status-dot"></span>
 
-                Verification without the headache
+                Verify is ready
 
             </div>
 
 
             <h1>
-                Проверка, которая
-                <span>не мешает.</span>
+                Верификация,<br>
+                которая <span>не мешает.</span>
             </h1>
 
 
             <p class="hero-description">
-                Verify помогает Discord-серверам защищаться
-                от подозрительных входов и повторных аккаунтов,
-                не превращая обычную верификацию в квест.
+
+                Получили QR-код Verify?
+
+                Не нужно разбираться, Web это или Plus.
+
+                Отсканируйте его — Verify сам выберет
+                нужный способ проверки.
+
             </p>
 
 
-            <div class="hero-buttons">
+            <div class="hero-actions">
 
-                <a
-                    class="button button-primary button-large"
-                    href="#users"
-                >
-                    Я пользователь
-                </a>
 
-                <a
-                    class="button button-secondary button-large"
-                    href="#owners"
+                <button
+                    class="scan-button"
+                    id="openScanner"
+                    type="button"
                 >
-                    Я владелец сервера
-                </a>
+
+                    <span
+                        class="scan-icon"
+                        aria-hidden="true"
+                    >
+
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                        <i></i>
+
+                        <b></b>
+
+                    </span>
+
+
+                    <span class="scan-button-text">
+
+                        <strong>
+                            Сканировать QR
+                        </strong>
+
+                        <small>
+                            Начать проверку
+                        </small>
+
+                    </span>
+
+
+                    <span class="scan-arrow">
+                        →
+                    </span>
+
+                </button>
+
+
+                <div class="hero-secondary-actions">
+
+                    <a
+                        class="button button-secondary button-large"
+                        href="#pass"
+                    >
+                        Войти с Verify Pass
+                    </a>
+
+                    <a
+                        class="owner-link"
+                        href="/owners/"
+                    >
+                        Я владелец сервера →
+                    </a>
+
+                </div>
 
             </div>
 
 
-            <p class="hero-small">
-                Web для простоты. Plus для усиленной защиты.
-            </p>
+            <div class="route-pills">
+
+                <span>
+                    VERIFY WEB
+                </span>
+
+                <b>
+                    или
+                </b>
+
+                <span>
+                    VERIFY PLUS
+                </span>
+
+                <b>
+                    →
+                </b>
+
+                <strong>
+                    один QR
+                </strong>
+
+            </div>
 
         </div>
 
 
-        <!-- DEMO -->
+        <!-- QR PREVIEW -->
 
-        <div class="verification-demo">
+        <div
+            class="scanner-preview"
+            aria-hidden="true"
+        >
 
-            <div class="demo-top">
+            <div class="preview-top">
 
-                <div class="demo-brand">
+                <div class="preview-brand">
 
-                    <span class="demo-logo-box">
-
-                        <img
-                            class="demo-logo"
-                            src="assets/verify.png"
-                            alt=""
-                        >
-
-                    </span>
+                    <img
+                        src="assets/verify.png"
+                        alt=""
+                    >
 
                     <span>
-                        Verify Plus
+                        Verify
                     </span>
 
                 </div>
 
 
-                <span class="secure-badge">
-                    Secure
+                <span class="preview-secure">
+
+                    <i></i>
+
+                    Secure session
+
                 </span>
 
             </div>
 
 
-            <div class="demo-body">
+            <div class="preview-body">
 
-                <div class="demo-icon">
-                    ✓
+                <span class="preview-label">
+                    SCAN TO VERIFY
+                </span>
+
+
+                <div class="qr-stage">
+
+                    <div class="qr-frame">
+
+                        <span class="corner c1"></span>
+                        <span class="corner c2"></span>
+                        <span class="corner c3"></span>
+                        <span class="corner c4"></span>
+
+
+                        <div class="fake-qr">
+
+                            <div class="qr-grid"></div>
+
+                            <div class="qr-logo">
+
+                                <img
+                                    src="assets/verify.png"
+                                    alt=""
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="scan-line"></div>
+
+                    </div>
+
                 </div>
 
 
                 <h3>
-                    Verification complete
+                    Один код. Любая проверка.
                 </h3>
 
 
                 <p>
-                    Ваша проверка успешно завершена.
+                    Verify определит способ автоматически.
                 </p>
 
 
-                <div class="demo-info">
+                <div class="preview-methods">
 
-                    <div>
+                    <span>
+                        Web
+                    </span>
 
-                        <span>
-                            Server
-                        </span>
+                    <div class="method-line"></div>
 
-                        <strong>
-                            Discord Server
-                        </strong>
+                    <span>
+                        Plus
+                    </span>
 
-                    </div>
+                    <div class="method-line"></div>
 
-
-                    <div>
-
-                        <span>
-                            Method
-                        </span>
-
-                        <strong>
-                            Verify Pass
-                        </strong>
-
-                    </div>
-
-
-                    <div>
-
-                        <span>
-                            Time
-                        </span>
-
-                        <strong>
-                            4.2 sec
-                        </strong>
-
-                    </div>
+                    <span class="method-ready">
+                        Ready
+                    </span>
 
                 </div>
 
@@ -319,245 +388,276 @@
     </section>
 
 
-    <!-- USERS -->
+    <!-- HOW -->
 
     <section
-        class="section"
-        id="users"
+        class="section how-section"
+        id="how"
     >
 
-        <div class="section-heading">
+        <div class="section-heading centered">
 
             <span class="eyebrow">
-                ДЛЯ ПОЛЬЗОВАТЕЛЕЙ
+                КАК ЭТО РАБОТАЕТ
             </span>
 
 
             <h2>
-                Зашёл на сервер.<br>
-                Проверился. Готово.
+                Три шага. Без квеста на полчаса.
             </h2>
 
 
             <p>
-                Для обычной проверки ничего устанавливать
-                не нужно. А если Verify встречается часто —
-                есть Verify Pass.
+
+                Ссылка из Discord и QR-код ведут
+                в одну Verify-сессию.
+
+                Дальше система сама понимает,
+                что требуется серверу.
+
             </p>
 
         </div>
 
 
-        <div class="feature-grid">
+        <div class="steps">
 
-            <article class="feature-card">
 
-                <div class="feature-number">
-                    01
+            <article class="step-card">
+
+                <div class="step-top">
+
+                    <span class="step-number">
+                        01
+                    </span>
+
+                    <span class="step-icon">
+                        ▦
+                    </span>
+
                 </div>
 
+
                 <h3>
-                    Discord
+                    Получили QR
                 </h3>
 
+
                 <p>
-                    Verify получает ваш аккаунт через
-                    официальную авторизацию Discord.
-                    Никаких ручных Discord ID.
+
+                    Бот отправляет QR-код и запасную ссылку.
+
+                    Оба способа запускают одну
+                    и ту же проверку.
+
                 </p>
 
             </article>
 
 
-            <article class="feature-card">
+            <div class="step-connector">
+                →
+            </div>
 
-                <div class="feature-number">
-                    02
+
+            <article class="step-card featured-step">
+
+                <div class="step-top">
+
+                    <span class="step-number">
+                        02
+                    </span>
+
+                    <span class="step-icon">
+                        V
+                    </span>
+
                 </div>
 
+
                 <h3>
-                    Проверка
+                    Verify выбирает путь
                 </h3>
 
+
                 <p>
-                    Сервер выбирает подходящий уровень:
-                    обычный Verify Web или усиленный
-                    Verify Plus.
+
+                    Verify Web открывается в браузере.
+
+                    Для Verify Plus приоритет получает
+                    уже настроенный Pass.
+
                 </p>
+
+
+                <div class="mini-routes">
+
+                    <span>
+                        WEB
+                    </span>
+
+                    <span>
+                        PLUS
+                    </span>
+
+                </div>
 
             </article>
 
 
-            <article class="feature-card">
+            <div class="step-connector">
+                →
+            </div>
 
-                <div class="feature-number">
-                    03
+
+            <article class="step-card">
+
+                <div class="step-top">
+
+                    <span class="step-number">
+                        03
+                    </span>
+
+                    <span class="step-icon success">
+                        ✓
+                    </span>
+
                 </div>
+
 
                 <h3>
                     Готово
                 </h3>
 
+
                 <p>
-                    После успешной проверки бот
-                    автоматически предоставляет
-                    доступ к серверу.
+
+                    После успешной проверки Verify
+                    сообщает серверу результат,
+                    и вы продолжаете вход.
+
                 </p>
 
             </article>
+
 
         </div>
 
     </section>
 
 
-    <!-- OWNERS -->
+    <!-- ROUTING -->
 
-    <section
-        class="section versions-section"
-        id="owners"
-    >
+    <section class="section routes-section">
 
-        <div class="section-heading">
+        <div class="route-showcase">
 
-            <span class="owner-brand">
 
-                Verify
+            <div class="route-copy">
 
-                <span class="for-text">
-                    for owners
+                <span class="eyebrow">
+                    ОДНА ТОЧКА ВХОДА
                 </span>
 
-            </span>
+
+                <h2>
+                    Не думайте,<br>
+                    какой у вас Verify.
+                </h2>
 
 
-            <h2>
-                Выберите уровень защиты.
-            </h2>
+                <p>
+
+                    Web и Plus — разные уровни проверки,
+                    но для пользователя старт одинаковый:
+
+                    открыть ссылку или отсканировать QR.
+
+                </p>
+
+            </div>
 
 
-            <p>
-                Начните с Web или используйте Plus,
-                когда серверу требуется усиленная проверка.
-            </p>
-
-        </div>
+            <div class="route-map">
 
 
-        <div class="versions-grid">
+                <div class="route-source">
+
+                    <div class="route-source-icon">
+                        ▦
+                    </div>
+
+                    <strong>
+                        QR / Link
+                    </strong>
+
+                    <span>
+                        Verify Session
+                    </span>
+
+                </div>
 
 
-            <article class="version-card">
+                <div class="route-split">
 
-                <div class="version-header">
+                    <span></span>
+                    <i></i>
+                    <span></span>
 
-                    <div>
-
-                        <span class="version-label">
-                            SIMPLE
-                        </span>
+                </div>
 
 
-                        <h3 class="version-title">
+                <div class="route-destinations">
 
-                            Verify
 
-                            <span class="for-text version-for">
-                                for web
+                    <div class="route-destination">
+
+                        <div>
+
+                            <span class="route-tag">
+                                BROWSER
                             </span>
 
-                        </h3>
+                            <strong>
+                                Verify Web
+                            </strong>
 
-                    </div>
+                        </div>
 
-                </div>
-
-
-                <p class="version-description">
-                    Простая браузерная верификация.
-                    Пользователю ничего не нужно скачивать.
-                </p>
-
-
-                <ul class="version-features">
-
-                    <li>Discord OAuth</li>
-                    <li>CAPTCHA</li>
-                    <li>Базовый анализ риска</li>
-                    <li>Review и Kick</li>
-                    <li>Логи в Discord</li>
-                    <li>Управление через Verify Pass</li>
-
-                </ul>
-
-
-                <a
-                    class="button button-secondary version-button"
-                    href="#"
-                >
-                    Добавить Verify
-                </a>
-
-            </article>
-
-
-            <article class="version-card version-card-plus">
-
-                <div class="recommended">
-                    RECOMMENDED
-                </div>
-
-
-                <div class="version-header">
-
-                    <div>
-
-                        <span class="version-label">
-                            ADVANCED SECURITY
+                        <span class="route-state">
+                            Open →
                         </span>
 
-
-                        <h3 class="version-title">
-                            Verify Plus
-                        </h3>
-
                     </div>
 
 
-                    <div class="plus-symbol">
-                        +
+                    <div
+                        class="route-destination
+                               route-destination-plus"
+                    >
+
+                        <div>
+
+                            <span class="route-tag">
+                                ADVANCED
+                            </span>
+
+                            <strong>
+                                Verify Plus
+                            </strong>
+
+                        </div>
+
+                        <span class="route-state">
+                            Pass first →
+                        </span>
+
                     </div>
+
 
                 </div>
 
-
-                <p class="version-description">
-                    Усиленная проверка для серверов,
-                    которым браузерной версии Verify
-                    уже недостаточно.
-                </p>
-
-
-                <ul class="version-features">
-
-                    <li>Всё из Verify for Web</li>
-                    <li>Verify Helper</li>
-                    <li>Verify Pass</li>
-                    <li>Расширенная проверка устройства</li>
-                    <li>Быстрые повторные проверки</li>
-                    <li>Расширенная статистика</li>
-
-                </ul>
-
-
-                <a
-                    class="button button-primary version-button"
-                    href="#"
-                >
-                    Добавить Verify Plus
-                </a>
-
-            </article>
+            </div>
 
         </div>
 
@@ -582,15 +682,23 @@
 
 
                 <h2>
-                    Один раз настроил.<br>
-                    Потом — несколько секунд.
+
+                    Один раз настроили.<br>
+
+                    Дальше — несколько секунд.
+
                 </h2>
 
 
                 <p>
-                    Verify Pass позволяет быстро подтверждать
-                    проверки Verify Plus без повторной привязки
-                    Discord и запуска одноразового Helper.
+
+                    Pass живёт рядом и не мешает,
+                    пока не понадобится.
+
+                    При следующем Verify Plus
+                    откройте запрос,
+                    подтвердите проверку — готово.
+
                 </p>
 
 
@@ -603,20 +711,44 @@
                         Получить Verify Pass
                     </a>
 
-
                     <a
                         class="text-link"
-                        href="#helper"
+                        href="#help"
                     >
-                        Как это работает →
+                        Как работает Pass →
                     </a>
+
+                </div>
+
+
+                <div class="pass-points">
+
+                    <span>
+                        <i>✓</i>
+                        Быстрые повторные проверки
+                    </span>
+
+                    <span>
+                        <i>✓</i>
+                        QR и ссылки Verify Plus
+                    </span>
+
+                    <span>
+                        <i>✓</i>
+                        Управление серверами для владельцев
+                    </span>
 
                 </div>
 
             </div>
 
 
+            <!-- PASS WINDOW -->
+
             <div class="pass-preview">
+
+                <div class="phone-glow"></div>
+
 
                 <div class="pass-window">
 
@@ -632,15 +764,10 @@
 
                         <div class="pass-window-brand">
 
-                            <span class="pass-title-logo-box">
-
-                                <img
-                                    class="pass-title-logo"
-                                    src="assets/verify.png"
-                                    alt=""
-                                >
-
-                            </span>
+                            <img
+                                src="assets/verify.png"
+                                alt=""
+                            >
 
                             <strong>
                                 Verify Pass
@@ -653,34 +780,45 @@
 
                     <div class="pass-window-content">
 
-                        <div class="pass-status-icon">
-                            ✓
+
+                        <div class="pass-avatar">
+
+                            <img
+                                src="assets/verify.png"
+                                alt=""
+                            >
+
                         </div>
 
 
+                        <span class="pass-active">
+
+                            <i></i>
+
+                            PASS ACTIVE
+
+                        </span>
+
+
                         <h3>
-                            Pass active
+                            Готов к проверке
                         </h3>
 
 
                         <p>
-                            Устройство готово к проверкам
+                            Новый запрос появится здесь автоматически.
                         </p>
 
 
-                        <div class="pass-server">
+                        <div class="request-card">
 
-                            <div>
 
-                                <span class="server-logo-box">
+                            <div class="request-server">
 
-                                    <img
-                                        class="server-logo"
-                                        src="assets/verify.png"
-                                        alt=""
-                                    >
-
-                                </span>
+                                <img
+                                    src="assets/verify.png"
+                                    alt=""
+                                >
 
 
                                 <div>
@@ -690,7 +828,7 @@
                                     </strong>
 
                                     <span>
-                                        Verification request
+                                        Verify Plus request
                                     </span>
 
                                 </div>
@@ -702,55 +840,25 @@
                                 class="confirm-button"
                                 type="button"
                             >
-                                Confirm
+                                Подтвердить
                             </button>
 
-                        </div>
-
-
-                        <div class="pass-server owner-server">
-
-                            <div>
-
-                                <span class="server-logo-box">
-
-                                    <img
-                                        class="server-logo"
-                                        src="assets/verify.png"
-                                        alt=""
-                                    >
-
-                                </span>
-
-
-                                <div>
-
-                                    <strong>
-                                        My Server
-                                    </strong>
-
-                                    <span>
-                                        Owner
-                                    </span>
-
-                                </div>
-
-                            </div>
-
-
-                            <div class="owner-actions">
-
-                                <button type="button">
-                                    Статистика
-                                </button>
-
-                                <button type="button">
-                                    Управление
-                                </button>
-
-                            </div>
 
                         </div>
+
+
+                        <div class="pass-meta">
+
+                            <span>
+                                Последняя проверка
+                            </span>
+
+                            <strong>
+                                4.2 sec
+                            </strong>
+
+                        </div>
+
 
                     </div>
 
@@ -763,140 +871,35 @@
     </section>
 
 
-    <!-- HELPER -->
+    <!-- HELP -->
 
     <section
-        class="section helper-section"
-        id="helper"
+        class="section help-section"
+        id="help"
     >
 
-        <div class="section-heading">
+        <div class="help-card">
 
-            <span class="eyebrow">
-                VERIFY HELPER
-            </span>
-
-
-            <h2>
-                Pass пока не нужен?<br>
-                Есть Helper.
-            </h2>
-
-
-            <p>
-                Для редких Verify Plus-проверок
-                можно использовать маленький
-                одноразовый Verify Helper.
-            </p>
-
-        </div>
-
-
-        <div class="helper-flow">
-
-            <div class="flow-step">
-
-                <span>
-                    1
-                </span>
-
-                <strong>
-                    Discord OAuth
-                </strong>
-
-                <p>
-                    Сначала Verify связывает
-                    проверку с вашим Discord-аккаунтом.
-                </p>
-
-            </div>
-
-
-            <div class="flow-arrow">
-                →
-            </div>
-
-
-            <div class="flow-step">
-
-                <span>
-                    2
-                </span>
-
-                <strong>
-                    QR
-                </strong>
-
-                <p>
-                    Открываете Helper и сканируете
-                    временный QR-код с сайта.
-                </p>
-
-            </div>
-
-
-            <div class="flow-arrow">
-                →
-            </div>
-
-
-            <div class="flow-step">
-
-                <span>
-                    3
-                </span>
-
-                <strong>
-                    Verify
-                </strong>
-
-                <p>
-                    Проверка завершается результатом:
-                    Pass, Review или Kick.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="helper-note">
-
-            После нескольких использований Helper
-            Verify может предложить установить Verify Pass.
-            Pass не обязателен — Helper продолжит работать.
-
-        </div>
-
-    </section>
-
-
-    <!-- DOCS -->
-
-    <section
-        class="section docs-section"
-        id="docs"
-    >
-
-        <div class="docs-card">
 
             <div>
 
                 <span class="eyebrow">
-                    DOCUMENTATION
+                    НУЖНА ПОМОЩЬ?
                 </span>
 
 
                 <h2>
-                    Хотите узнать,
-                    как всё устроено?
+                    Verify должен объяснять себя сам.
                 </h2>
 
 
                 <p>
-                    Документация Verify, информация
-                    о безопасности, конфиденциальности
-                    и интеграции для владельцев серверов.
+
+                    Здесь появятся ответы про Verify Web,
+                    Verify Plus, Helper, Pass,
+                    установочные коды
+                    и проблемы с проверкой.
+
                 </p>
 
             </div>
@@ -906,8 +909,9 @@
                 class="button button-secondary button-large"
                 href="#"
             >
-                Открыть документацию
+                Открыть помощь
             </a>
+
 
         </div>
 
@@ -917,7 +921,10 @@
 </main>
 
 
+<!-- FOOTER -->
+
 <footer>
+
 
     <div class="footer-brand">
 
@@ -949,24 +956,20 @@
 
     <div class="footer-links">
 
-        <a href="#users">
-            Пользователям
+        <a href="#home">
+            Главная
         </a>
 
-        <a href="#owners">
-            Владельцам
+        <a href="#how">
+            Как это работает
         </a>
 
         <a href="#pass">
             Pass
         </a>
 
-        <a href="#docs">
-            Документация
-        </a>
-
-        <a href="/secret/">
-            Наш секрет
+        <a href="/owners/">
+            Владельцам
         </a>
 
     </div>
@@ -976,11 +979,112 @@
         © 2026 Verify
     </div>
 
+
 </footer>
 
 
-<script src="script.js"></script>
+<!-- QR SCANNER -->
 
+<div
+    class="scanner-modal"
+    id="scannerModal"
+    aria-hidden="true"
+>
+
+    <div
+        class="scanner-backdrop"
+        data-close-scanner
+    ></div>
+
+
+    <div
+        class="scanner-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="scannerTitle"
+    >
+
+
+        <button
+            class="scanner-close"
+            type="button"
+            data-close-scanner
+            aria-label="Закрыть"
+        >
+            ×
+        </button>
+
+
+        <div class="scanner-dialog-brand">
+
+            <img
+                src="assets/verify.png"
+                alt=""
+            >
+
+            <span>
+                Verify Scanner
+            </span>
+
+        </div>
+
+
+        <h2 id="scannerTitle">
+            Сканировать QR
+        </h2>
+
+
+        <p>
+
+            Наведи камеру на QR-код Verify.
+
+            Сам сканер подключим
+            на этапе движка.
+
+        </p>
+
+
+        <div class="camera-placeholder">
+
+            <span class="corner c1"></span>
+            <span class="corner c2"></span>
+            <span class="corner c3"></span>
+            <span class="corner c4"></span>
+
+
+            <div class="camera-icon">
+                ▦
+            </div>
+
+
+            <div class="camera-line"></div>
+
+        </div>
+
+
+        <div class="scanner-note">
+
+            <span>
+                VERIFY WEB
+            </span>
+
+            <b>
+                +
+            </b>
+
+            <span>
+                VERIFY PLUS
+            </span>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<script src="script.js"></script>
 
 </body>
 </html>
